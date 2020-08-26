@@ -3,15 +3,14 @@ import creator from './modules/aux-methods';
 import Project from './modules/project';
 import ToDo from './modules/todo';
 import { createNav, liNamesList } from './modules/dom-navbar';
-import { createProjectModal, addCBToSubmit } from './modules/dom-modal-proj';
+import createProjectModal from './modules/dom-modal-proj';
 
-const projectsContainer = [];
+const projectsCont = [];
 const content = document.getElementById('content');
 
 const main = creator(content, 'main', 'append');
 createNav(main, liNamesList);
-const modal = createProjectModal(main);
-addCBToSubmit(modal, projectsContainer);
+const modal = createProjectModal(main, projectsCont);
 
 const allToDos = creator(main, 'section', 'append');
 allToDos.setAttribute('id', 'sect-all-todos');
@@ -22,12 +21,12 @@ showToDo.setAttribute('id', 'sect-selected-todo');
 const navList = document.getElementsByTagName('ul')[0].children;
 
 // const defaultProject = Project('default');
-// projectsContainer.push(defaultProject);
+// projectsCont.push(defaultProject);
 
 navList[1].addEventListener('click', () => {
   modal.style.display = 'block';
 });
 
 navList[3].addEventListener('click', () => {
-  console.log(projectsContainer[0].getName());
+  console.log(projectsCont[0].getName());
 });

@@ -1,10 +1,18 @@
 import Project from './project';
 
-function verifyInput(inputValue, projectsContainer, modal) {
-  if (inputValue.checkValidity()) {
-    inputValue.setCustomValidity('');
-    const test = Project(inputValue.value);
-    projectsContainer.push(test);
+function clearInputs(inputs) {
+  inputs.forEach(element => {
+    element.value = '';
+  });
+}
+
+function verifyInput(inputs, projectsCont, modal) {
+  const allInputs = [...inputs];
+  if (allInputs.some(x => x.checkValidity())) {
+    const allValues = allInputs.map(x => x.value);
+    const newProject = Project(...allValues);
+    projectsCont.push(newProject);
+    clearInputs(allInputs);
     modal.style.display = 'none';
   } else {
     return false;

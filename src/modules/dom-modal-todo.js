@@ -1,9 +1,21 @@
 import creator from './aux-methods';
 import verifyInput from './modal-proj';
 
-function createModal(parent) {
-  const modal = creator(parent, 'div', 'append');
+const inputInfo = [
+  ['To-do Title:', 'title', 'text', 'input-todo', '\\D{3,30}'],
+  ['Description:', 'description', 'text', 'input-todo', '\\D{3,50}'],
+  ['Notes:', 'notes', 'textarea', 'input-todo', ''],
+];
+
+function createModal(main, headerTitle) {
+  const modalWindow = creator(main, 'div', 'append');
+  modalWindow.setAttribute('class', 'modal');
+
+  const modal = creator(modalWindow, 'div', 'append');
   modal.setAttribute('class', 'modal-content');
+
+  const header = creator(modal, 'h3', 'append');
+  header.innerHTML = `${headerTitle}`;
   return modal;
 }
 
@@ -16,25 +28,19 @@ function addAttributestoInput(...params) {
   params[0].required = true;
 }
 
-function createFormProj(main) {
-  const modalWindow = creator(main, 'div', 'append');
-  modalWindow.setAttribute('class', 'modal');
-
-  const modal = createModal(modalWindow);
-
-  const header = creator(modal, 'h3', 'append');
-  header.innerHTML = 'Add New Project';
-
+function createFormToDo(modal) {
   const form = creator(modal, 'form', 'append');
   form.setAttribute('id', 'proj-form');
-
+  /*
   const nameLabel = creator(form, 'label', 'append');
   nameLabel.setAttribute('for', 'name');
   nameLabel.innerHTML = 'Project Name:';
+
   const textBox = creator(form, 'p', 'append');
   textBox.setAttribute('id', 'text-proj');
   textBox.innerHTML = 'The name must be at least 3 characters long.';
   textBox.style.display = 'none';
+
   const name = creator(form, 'input', 'append');
   addAttributestoInput(name, 'name', 'text', 'input-proj', '\\D{3,50}');
 
@@ -43,27 +49,13 @@ function createFormProj(main) {
   submitBtn.setAttribute('id', 'create-proj-btn');
   submitBtn.innerHTML = 'SUBMIT';
   return modalWindow;
+  */
+
+  for (let i = 0; i < inputInfo.length; i += 1) {
+    const element = creator(form, 'label', 'append');
+    element.setAttribute('for', 'name');
+    element.innerHTML = 'Project Name:';
+    const input = creator(form, 'input', 'append');
+    addAttributestoInput(input, 'name', 'text', 'input-proj', '\\D{3,50}');
+  }
 }
-
-function addCBToSubmit(modal, projectsCont) {
-  const button = document.getElementById('create-proj-btn');
-  const text = document.getElementById('text-proj');
-
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
-    const input = document.getElementsByClassName('input-proj');
-    if (!verifyInput(input, projectsCont, modal)) {
-      text.style.display = 'block';
-    } else {
-      text.style.display = 'none';
-    }
-  });
-}
-
-function createProjectModal(main, projectsCont) {
-  const modal = createFormProj(main);
-  addCBToSubmit(modal, projectsCont);
-  return modal;
-}
-
-export default createProjectModal;
