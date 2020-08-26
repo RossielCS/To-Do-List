@@ -1,37 +1,33 @@
 import './assets/stylesheets/style.scss';
-import creator from './aux-methods';
-import Project from './project';
-import ToDo from './todo';
-import { createNav, liNamesList } from './navbar-dom';
-import createProjectModal from './modal-window';
+import creator from './modules/aux-methods';
+import Project from './modules/project';
+import ToDo from './modules/todo';
+import { createNav, liNamesList } from './modules/dom-navbar';
+import { createProjectModal, addCBtoSubmit } from './modules/dom-modal-window';
 
 const projectsContainer = [];
 const content = document.getElementById('content');
+
 const main = creator(content, 'main', 'append');
 createNav(main, liNamesList);
-const navList = document.getElementsByTagName('ul')[0].children;
 const modal = createProjectModal(main);
-const defaultProject = Project('default');
-projectsContainer.push(defaultProject);
+addCBtoSubmit(modal, projectsContainer);
+
+const allToDos = creator(main, 'section', 'append');
+allToDos.setAttribute('id', 'sect-all-todos');
+
+const showToDo = creator(main, 'article', 'append');
+showToDo.setAttribute('id', 'sect-selected-todo');
+
+const navList = document.getElementsByTagName('ul')[0].children;
+
+// const defaultProject = Project('default');
+// projectsContainer.push(defaultProject);
 
 navList[1].addEventListener('click', () => {
   modal.style.display = 'block';
 });
 
-const submitBtn = document.getElementById('create-proj-btn');
-submitBtn.addEventListener('click', (e) => {
-  const name = document.getElementById('name').value;
-  const test = Project(name);
-  projectsContainer.push(test);
-  console.log(projectsContainer);
-  console.log(projectsContainer[1].getName());
-  e.preventDefault();
+navList[3].addEventListener('click', () => {
+  console.log(projectsContainer[0].getName());
 });
-
-/*
-const allToDos = creator(main, 'section', 'append');
-allToDos.setAttribute('id', 'all-todos');
-
-const showToDo = creator(main, 'article', 'append');
-showToDo.setAttribute('id', 'selected-todo');
-*/
