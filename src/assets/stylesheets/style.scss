@@ -1,5 +1,67 @@
+@import 'mixins';
+@import 'variables';
+@import 'reset';
+
 #content {
-  height: 200px;
-  width: 500px;
-  background-color: green;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(768px, 1920px) 1fr;
+}
+
+main {
+  height: 100vh;
+  grid-column: 2/3;
+
+  @include flex(row, center, center);
+
+  & > * {
+    height: 100%;
+  }
+}
+
+nav {
+  width: 15%;
+  background-color: royalblue;
+}
+
+#all-todos {
+  width: 20%;
+  background-color: salmon;
+}
+
+#selected-todo {
+  width: 65%;
+  background-color: seagreen;
+}
+
+ul {
+  li {
+    cursor: pointer;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.4);
+  animation-name: animatetop;
+  animation-duration: 0.6s;
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+
+  to {
+    top: 50%;
+    opacity: 1;
+  }
 }

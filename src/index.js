@@ -1,21 +1,37 @@
 import './assets/stylesheets/style.scss';
+import creator from './aux-methods';
 import Project from './project';
 import ToDo from './todo';
+import { createNav, liNamesList } from './navbar-dom';
+import createProjectModal from './modal-window';
 
-function test() {
-  const content = document.getElementById('content');
-  content.innerHTML = 'It works!!!';
-}
+const projectsContainer = [];
+const content = document.getElementById('content');
+const main = creator(content, 'main', 'append');
+createNav(main, liNamesList);
+const navList = document.getElementsByTagName('ul')[0].children;
+const modal = createProjectModal(main);
+const defaultProject = Project('default');
+projectsContainer.push(defaultProject);
 
-const obj = Project('default Project');
-const todo = ToDo(
-  undefined, 'title test', 'this is a test', '28/07/2020',
-  '02', 'These are the notes',
-);
+navList[1].addEventListener('click', () => {
+  modal.style.display = 'block';
+});
 
-test();
-console.log(obj);
-console.log(todo.getProject());
-if (todo.getProject() === obj.getName()) obj.addToDo(todo);
+const submitBtn = document.getElementById('create-proj-btn');
+submitBtn.addEventListener('click', (e) => {
+  const name = document.getElementById('name').value;
+  const test = Project(name);
+  projectsContainer.push(test);
+  console.log(projectsContainer);
+  console.log(projectsContainer[1].getName());
+  e.preventDefault();
+});
 
-console.log(obj.getToDos());
+/*
+const allToDos = creator(main, 'section', 'append');
+allToDos.setAttribute('id', 'all-todos');
+
+const showToDo = creator(main, 'article', 'append');
+showToDo.setAttribute('id', 'selected-todo');
+*/
