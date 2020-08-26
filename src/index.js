@@ -3,7 +3,7 @@ import creator from './modules/aux-methods';
 import Project from './modules/project';
 import ToDo from './modules/todo';
 import { createNav, liNamesList } from './modules/dom-navbar';
-import { createProjectModal, addCBtoSubmit } from './modules/dom-modal-window';
+import { createProjectModal, addCBToSubmit } from './modules/dom-modal-proj';
 
 const projectsContainer = [];
 const content = document.getElementById('content');
@@ -11,7 +11,7 @@ const content = document.getElementById('content');
 const main = creator(content, 'main', 'append');
 createNav(main, liNamesList);
 const modal = createProjectModal(main);
-addCBtoSubmit(modal, projectsContainer);
+addCBToSubmit(modal, projectsContainer);
 
 const allToDos = creator(main, 'section', 'append');
 allToDos.setAttribute('id', 'sect-all-todos');

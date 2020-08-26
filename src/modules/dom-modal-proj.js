@@ -1,5 +1,5 @@
 import creator from './aux-methods';
-import Project from './project';
+import verifyInput from './modal-proj';
 
 function createModal(parent) {
   const modal = creator(parent, 'div', 'append');
@@ -25,12 +25,17 @@ function createProjectModal(main) {
   header.innerHTML = 'Add New Project';
 
   const form = creator(modal, 'form', 'append');
+  form.setAttribute('id', 'proj-form');
 
   const nameLabel = creator(form, 'label', 'append');
   nameLabel.setAttribute('for', 'name');
   nameLabel.innerHTML = 'Project Name:';
+  const textBox = creator(form, 'p', 'append');
+  textBox.setAttribute('id', 'text-proj');
+  textBox.innerHTML = 'The name must be at least 3 characters long.';
+  textBox.style.display = 'none';
   const name = creator(form, 'input', 'append');
-  addAttributes(name, 'name', 'text', '\\D{3,20}');
+  addAttributes(name, 'name', 'text', '\\D{3,50}');
 
   const submitBtn = creator(form, 'button', 'append');
   submitBtn.setAttribute('type', 'submit');
@@ -39,15 +44,19 @@ function createProjectModal(main) {
   return modalWindow;
 }
 
-function addCBtoSubmit(modal, projectsContainer) {
+function addCBToSubmit(modal, projectsContainer) {
   const button = document.getElementById('create-proj-btn');
+  const text = document.getElementById('text-proj');
+
   button.addEventListener('click', (e) => {
-    const name = document.getElementById('name').value;
-    const test = Project(name);
-    projectsContainer.push(test);
-    modal.style.display = 'none';
     e.preventDefault();
+    const name = document.getElementById('name');
+    if (!verifyInput(name, projectsContainer, modal)) {
+      text.style.display = 'block';
+    } else {
+      text.style.display = 'none';
+    }
   });
 }
 
-export { createProjectModal, addCBtoSubmit };
+export { createProjectModal, addCBToSubmit };
