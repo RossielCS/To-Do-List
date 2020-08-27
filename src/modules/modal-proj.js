@@ -22,6 +22,7 @@ function verifyInput(inputs, projectsCont, modal, objMethod) {
     const allValues = getValues(allInputs);
     const newObj = objMethod(...allValues);
     // if (objMethod === Project) projectsCont.push(newObj);
+    clearInputs(allInputs);
     modal.style.display = 'none';
   } else {
     return false;

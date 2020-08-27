@@ -9,10 +9,10 @@ const inputInfo = [
 ];
 
 const radioButtons = [
-  ['critical', 'radio', 'input-proj', '', 'priority'],
-  ['high', 'radio', 'input-proj', '', 'priority'],
-  ['medium', 'radio', 'input-proj', '', 'priority'],
-  ['low', 'radio', 'input-proj', '', 'priority'],
+  ['critical', 'radio', 'input-todo', '', 'priority'],
+  ['high', 'radio', 'input-todo', '', 'priority'],
+  ['medium', 'radio', 'input-todo', '', 'priority'],
+  ['low', 'radio', 'input-todo', '', 'priority'],
 ];
 
 function createModal(main, headerTitle) {
@@ -32,7 +32,7 @@ function addAttributestoInput(...params) {
   params[0].setAttribute('type', `${params[2]}`);
   params[0].setAttribute('class', `${params[3]}`);
   if (params[2] === 'radio') {
-    params[0].setAttribute('name', `${params[1]}`);
+    params[0].setAttribute('name', `${params[5]}`);
     params[0].setAttribute('value', `${params[1]}`);
   } else {
     params[0].setAttribute('name', `${params[1]}`);
