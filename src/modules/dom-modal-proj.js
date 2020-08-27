@@ -45,14 +45,14 @@ function createFormProj(main) {
   return modalWindow;
 }
 
-function addCBToSubmit(modal, projectsCont) {
+function addCBToSubmit(modal, projectsCont, objMethod) {
   const button = document.getElementById('create-proj-btn');
   const text = document.getElementById('text-proj');
 
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const input = document.getElementsByClassName('input-proj');
-    if (!verifyInput(input, projectsCont, modal)) {
+    if (!verifyInput(input, projectsCont, modal, objMethod)) {
       text.style.display = 'block';
     } else {
       text.style.display = 'none';
@@ -60,9 +60,9 @@ function addCBToSubmit(modal, projectsCont) {
   });
 }
 
-function createProjectModal(main, projectsCont) {
+function createProjectModal(main, projectsCont, Project) {
   const modal = createFormProj(main);
-  addCBToSubmit(modal, projectsCont);
+  addCBToSubmit(modal, projectsCont, Project);
   return modal;
 }
 

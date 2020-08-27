@@ -18,8 +18,8 @@ allToDos.setAttribute('id', 'sect-all-todos');
 const showToDo = creator(main, 'article', 'append');
 showToDo.setAttribute('id', 'sect-selected-todo');
 
-const modalProject = createProjectModal(main, projectsCont);
-const modalToDo = createToDoModal(main, inputInfo, radioButtons);
+const modalProject = createProjectModal(main, projectsCont, Project);
+const modalToDo = createToDoModal(main, inputInfo, radioButtons, projectsCont, ToDo);
 
 const navList = document.getElementsByTagName('ul')[0].children;
 
@@ -28,6 +28,10 @@ const navList = document.getElementsByTagName('ul')[0].children;
 
 navList[1].addEventListener('click', () => {
   modalProject.style.display = 'block';
+});
+
+navList[2].addEventListener('click', () => {
+  modalToDo.style.display = 'block';
 });
 
 navList[3].addEventListener('click', () => {

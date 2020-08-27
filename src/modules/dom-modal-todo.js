@@ -24,7 +24,7 @@ function createModal(main, headerTitle) {
 
   const header = creator(modal, 'h3', 'append');
   header.innerHTML = `${headerTitle}`;
-  return modal;
+  return modalWindow;
 }
 
 function addAttributestoInput(...params) {
@@ -47,22 +47,24 @@ function createFormToDo(modal, inputInfo, radioButtons) {
 
   for (let i = 0; i < inputInfo.length; i += 1) {
     if (i === 3) {
-      for (let i = 0; i < radioButtons.length; i += 1) {
-        const priorityTitle = creator(form, 'p', 'append');
-        priorityTitle.innerHTML = 'Priority:';
+      const priorityTitle = creator(form, 'p', 'append');
+      priorityTitle.innerHTML = 'Priority:';
 
+      for (let i = 0; i < radioButtons.length; i += 1) {
         const critical = creator(form, 'input', 'append');
         addAttributestoInput(critical, ...radioButtons[i]);
+        const label = creator(form, 'label', 'append');
+        label.setAttribute('for', `${radioButtons[i][0]}`);
+        label.innerHTML = `${radioButtons[i][0]}`;
       }
-    } else {
-      const element = creator(form, 'label', 'append');
-      element.setAttribute('for', `${inputInfo[i][1]}`);
-      element.innerHTML = `${inputInfo[i][0]}`;
-      const input = creator(form, 'input', 'append');
-      addAttributestoInput(
-        input, inputInfo[i][1], inputInfo[i][2], inputInfo[i][3], inputInfo[i][4],
-      );
     }
+    const element = creator(form, 'label', 'append');
+    element.setAttribute('for', `${inputInfo[i][1]}`);
+    element.innerHTML = `${inputInfo[i][0]}`;
+    const input = creator(form, 'input', 'append');
+    addAttributestoInput(
+      input, inputInfo[i][1], inputInfo[i][2], inputInfo[i][3], inputInfo[i][4],
+    );
   }
 
   const submitBtn = creator(form, 'button', 'append');
@@ -71,25 +73,25 @@ function createFormToDo(modal, inputInfo, radioButtons) {
   submitBtn.innerHTML = 'SUBMIT';
 }
 
-function addCBToSubmit(modal, projectsCont) {
+function addCBToSubmit(modal, projectsCont, objMethod) {
   const button = document.getElementById('create-todo-btn');
-  const text = document.getElementById('text-todo');
+  // const text = document.getElementById('text-todo');
 
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const input = document.getElementsByClassName('input-todo');
-    if (!verifyInput(input, projectsCont, modal)) {
-      text.style.display = 'block';
+    if (!verifyInput(input, projectsCont, modal, objMethod)) {
+      // text.style.display = 'block';
     } else {
-      text.style.display = 'none';
+      // text.style.display = 'none';
     }
   });
 }
 
-function createToDoModal(main, inputInfo, radioButtons, projectsCont) {
+function createToDoModal(main, inputInfo, radioButtons, projectsCont, ToDo) {
   const modal = createModal(main, 'Add new To-Do');
   createFormToDo(modal, inputInfo, radioButtons);
-  addCBToSubmit(modal, projectsCont);
+  addCBToSubmit(modal, projectsCont, ToDo);
   return modal;
 }
 
