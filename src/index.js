@@ -35,5 +35,13 @@ navList[2].addEventListener('click', () => {
 });
 
 navList[3].addEventListener('click', () => {
-  console.log(projectsCont[0].getName());
 });
+
+const form = [...document.getElementsByTagName('form')];
+form.forEach(
+  x => x.addEventListener('onsubmit', (e) => {
+    // e.preventdefault();
+    return false;
+  }),
+);
+console.log(form);

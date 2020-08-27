@@ -2,17 +2,17 @@ import creator from './aux-methods';
 import verifyInput from './modal-proj';
 
 const inputInfo = [
-  ['To-do Title:', 'title', 'text', 'input-todo', '\\D{3,30}'],
-  ['Description:', 'description', 'text', 'input-todo', '\\D{3,50}'],
-  ['Due Date:', 'due-date', 'date', 'input-todo', ''],
-  ['Notes:', 'notes', 'textarea', 'input-todo', '.{3,300}'],
+  ['To-do Title:', 'title', 'text'],
+  ['Description:', 'description', 'text'],
+  ['Due Date:', 'due-date', 'date'],
+  ['Notes:', 'notes', 'textarea'],
 ];
 
 const radioButtons = [
-  ['critical', 'radio', 'input-todo', '', 'priority'],
-  ['high', 'radio', 'input-todo', '', 'priority'],
-  ['medium', 'radio', 'input-todo', '', 'priority'],
-  ['low', 'radio', 'input-todo', '', 'priority'],
+  ['critical', 'radio', 'priority'],
+  ['high', 'radio', 'priority'],
+  ['medium', 'radio', 'priority'],
+  ['low', 'radio', 'priority'],
 ];
 
 function createModal(main, headerTitle) {
@@ -30,68 +30,69 @@ function createModal(main, headerTitle) {
 function addAttributestoInput(...params) {
   params[0].setAttribute('id', `${params[1]}`);
   params[0].setAttribute('type', `${params[2]}`);
-  params[0].setAttribute('class', `${params[3]}`);
   if (params[2] === 'radio') {
-    params[0].setAttribute('name', `${params[5]}`);
+    params[0].setAttribute('name', `${params[3]}`);
     params[0].setAttribute('value', `${params[1]}`);
   } else {
     params[0].setAttribute('name', `${params[1]}`);
   }
-  if (params[2] === 'text') params[0].setAttribute('pattern', `${params[4]}`);
-  params[0].required = true;
+  if (params[2] !== 'textarea') params[0].required = true;
 }
 
-function createFormToDo(modal, inputInfo, radioButtons) {
+function createFormEle(form, className, inputInfo, i) {
+  const element = creator(form, 'label', 'append');
+  element.innerHTML = `${inputInfo[i][0]}`;
+  element.setAttribute('for', `${inputInfo[i][1]}`);
+  const input = creator(form, 'input', 'append');
+  input.setAttribute('class', `${className}`);
+  addAttributestoInput(
+    input, inputInfo[i][1], inputInfo[i][2],
+  );
+}
+
+function createRadioBtn(form, className, radioButtons, i) {
+  const radio = creator(form, 'input', 'append');
+  radio.setAttribute('class', `${className}`);
+  addAttributestoInput(radio, ...radioButtons[i]);
+  const label = creator(form, 'label', 'append');
+  label.setAttribute('for', `${radioButtons[i][0]}`);
+  label.innerHTML = `${radioButtons[i][0]}`;
+  if (i === 3) radio.checked = true;
+}
+
+function createFormToDo(modal, className, inputInfo, radioButtons) {
   const form = creator(modal, 'form', 'append');
   form.setAttribute('id', 'todo-form');
-
   for (let i = 0; i < inputInfo.length; i += 1) {
     if (i === 3) {
       const priorityTitle = creator(form, 'p', 'append');
       priorityTitle.innerHTML = 'Priority:';
 
       for (let i = 0; i < radioButtons.length; i += 1) {
-        const critical = creator(form, 'input', 'append');
-        addAttributestoInput(critical, ...radioButtons[i]);
-        const label = creator(form, 'label', 'append');
-        label.setAttribute('for', `${radioButtons[i][0]}`);
-        label.innerHTML = `${radioButtons[i][0]}`;
+        createRadioBtn(form, className, radioButtons, i);
       }
     }
-    const element = creator(form, 'label', 'append');
-    element.setAttribute('for', `${inputInfo[i][1]}`);
-    element.innerHTML = `${inputInfo[i][0]}`;
-    const input = creator(form, 'input', 'append');
-    addAttributestoInput(
-      input, inputInfo[i][1], inputInfo[i][2], inputInfo[i][3], inputInfo[i][4],
-    );
+    createFormEle(form, className, inputInfo, i);
   }
+  return form;
+}
 
+function createSubmitBtn(form, modal, projectsCont, objMethod) {
   const submitBtn = creator(form, 'button', 'append');
   submitBtn.setAttribute('type', 'submit');
   submitBtn.setAttribute('id', 'create-todo-btn');
   submitBtn.innerHTML = 'SUBMIT';
-}
-
-function addCBToSubmit(modal, projectsCont, objMethod) {
-  const button = document.getElementById('create-todo-btn');
-  // const text = document.getElementById('text-todo');
-
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
+  submitBtn.addEventListener('click', () => {
     const input = document.getElementsByClassName('input-todo');
-    if (!verifyInput(input, projectsCont, modal, objMethod)) {
-      // text.style.display = 'block';
-    } else {
-      // text.style.display = 'none';
-    }
+    verifyInput(input, projectsCont, modal, objMethod);
   });
 }
 
-function createToDoModal(main, inputInfo, radioButtons, projectsCont, ToDo) {
-  const modal = createModal(main, 'Add new To-Do');
-  createFormToDo(modal, inputInfo, radioButtons);
-  addCBToSubmit(modal, projectsCont, ToDo);
+// main, inputInfo, radioButtons, projectsCont, objMethod
+function createToDoModal(...params) {
+  const modal = createModal(params[0], 'Add new To-Do');
+  const form = createFormToDo(modal, 'input-todo', params[1], params[2]);
+  createSubmitBtn(form, modal, params[3], params[4]);
   return modal;
 }
 
