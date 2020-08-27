@@ -12,6 +12,7 @@ function getValues(allInputs) {
     if (allInputs[i].type === 'radio') {
       if (allInputs[i].checked) values.push(allInputs[i].value);
     } else {
+      if (allInputs[i].type !== 'textarea' && allInputs[i].value === '') return false;
       values.push(allInputs[i].value);
     }
   }
@@ -20,16 +21,16 @@ function getValues(allInputs) {
 
 function verifyInput(inputs, projectsCont, modal, objMethod) {
   const allInputs = [...inputs];
-  if (allInputs.every(x => x.checkValidity())) {
-    const allValues = getValues(allInputs);
+  const allValues = getValues(allInputs);
+  if (allValues) {
     const newObj = objMethod(...allValues);
     if (objMethod === Project) projectsCont.push(newObj);
     clearInputs(allInputs);
     modal.style.display = 'none';
-  } else {
-    return false;
+    projectsCont.map(x => console.log(x.getName()));
+    return true;
   }
-  return true;
+  return false;
 }
 
 export default verifyInput;

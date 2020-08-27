@@ -19,6 +19,10 @@ function createModal(main, headerTitle) {
 
   const header = creator(modal, 'h3', 'append');
   header.innerHTML = `${headerTitle}`;
+
+  const message = creator(modal, 'p', 'append');
+  message.innerHTML = 'Please fill in all required fields.';
+  message.setAttribute('class', 'input-msg-required');
   return modalWindow;
 }
 
@@ -31,7 +35,7 @@ function addAttributestoInput(...params) {
   } else {
     params[0].setAttribute('name', `${params[1]}`);
   }
-  if (params[2] !== 'textarea') params[0].required = true;
+  if (params[1] === 'notes') params[0].rows = '10';
 }
 
 function createFormEle(form, className, inputInfo, i) {
@@ -47,9 +51,17 @@ function createFormEle(form, className, inputInfo, i) {
 
 function addCBToSubmit(...params) {
   const btn = params[0].getElementsByTagName('button')[0];
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
     const input = document.getElementsByClassName(`${params[4]}`);
-    verifyInput(input, params[2], params[1], params[3]);
+    const validation = verifyInput(input, params[2], params[1], params[3]);
+    console.log(e.target.closest('.radio-container'));
+    /* const message = document.getElementsByClassName('input-msg-required')[0];
+    if (!validation) {
+      message[0].style.display = 'block';
+    } else {
+      message.style.display = 'none';
+    } */
   });
 }
 

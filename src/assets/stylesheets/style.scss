@@ -63,7 +63,11 @@ nav {
 
   .modal-content {
     padding: 5vh;
-    height: 100%;
+    // height: ;
+
+    .input-msg-required {
+      display: none;
+    }
 
     h3 {
       margin-bottom: 5vh;
@@ -74,7 +78,28 @@ nav {
       @include flex(column, space-between, flex-start);
 
       & > * {
-        margin-bottom: 4vh;
+        margin-bottom: 10px;
+      }
+
+      input {
+        width: 100%;
+      }
+
+      input[type='textarea'] {
+        overflow: auto;
+      }
+
+      .radio-container {
+        @include flex(row, flex-start, center);
+
+        & > * {
+          min-width: 20px;
+          margin-right: 5px;
+
+          & > * {
+            @include flex(column, flex-start, center);
+          }
+        }
       }
     }
   }

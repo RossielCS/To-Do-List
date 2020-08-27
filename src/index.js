@@ -33,15 +33,6 @@ navList[1].addEventListener('click', () => {
 navList[2].addEventListener('click', () => {
   modalToDo.style.display = 'block';
 });
-/*
+
 navList[3].addEventListener('click', () => {
 });
-
-const form = [...document.getElementsByTagName('form')];
-form.forEach(
-  x => x.addEventListener('onsubmit', (e) => {
-    // e.preventdefault();
-    return false;
-  }),
-);
-*/

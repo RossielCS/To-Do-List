@@ -3,10 +3,10 @@ import {
 } from './aux-methods';
 
 const inputInfo = [
-  ['To-do Title:', 'title', 'text'],
-  ['Description:', 'description', 'text'],
-  ['Due Date:', 'due-date', 'date'],
-  ['Notes:', 'notes', 'textarea'],
+  ['Title', 'title', 'text'],
+  ['Description', 'description', 'text'],
+  ['Due Date', 'due-date', 'date'],
+  ['Notes (optional)', 'notes', 'textarea'],
 ];
 
 const radioButtons = [
@@ -16,11 +16,13 @@ const radioButtons = [
   ['low', 'radio', 'priority'],
 ];
 
-function createRadioBtn(form, className, radioButtons, i) {
-  const radio = creator(form, 'input', 'append');
+function createRadioBtn(container, className, radioButtons, i) {
+  const radioBox = creator(container, 'div', 'append');
+
+  const radio = creator(radioBox, 'input', 'append');
   radio.setAttribute('class', `${className}`);
   addAttributestoInput(radio, ...radioButtons[i]);
-  const label = creator(form, 'label', 'append');
+  const label = creator(radioBox, 'label', 'append');
   label.setAttribute('for', `${radioButtons[i][0]}`);
   label.innerHTML = `${radioButtons[i][0]}`;
   if (i === 3) radio.checked = true;
@@ -33,9 +35,11 @@ function createFormToDo(modal, className, inputInfo, radioButtons) {
     if (i === 3) {
       const priorityTitle = creator(form, 'p', 'append');
       priorityTitle.innerHTML = 'Priority:';
+      const radioContainer = creator(form, 'div', 'append');
+      radioContainer.setAttribute('class', 'radio-container');
 
       for (let i = 0; i < radioButtons.length; i += 1) {
-        createRadioBtn(form, className, radioButtons, i);
+        createRadioBtn(radioContainer, className, radioButtons, i);
       }
     }
     createFormEle(form, className, inputInfo, i);
@@ -44,16 +48,13 @@ function createFormToDo(modal, className, inputInfo, radioButtons) {
   submitBtn.setAttribute('type', 'submit');
   submitBtn.innerHTML = 'SUBMIT';
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
   return form;
 }
 
 // main, inputInfo, radioButtons, projectsCont, objMethod
 function createToDoModal(...params) {
-  const modal = createModal(params[0], 'Add new To-Do');
-  const form = createFormToDo(modal, 'input-todo', params[1], params[2]);
+  const modal = createModal(params[0], 'New To-Do');
+  const form = createFormToDo(modal.children[0], 'input-todo', params[1], params[2]);
   addCBToSubmit(form, modal, params[3], params[4], 'input-todo');
   return modal;
 }

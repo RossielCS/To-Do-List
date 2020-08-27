@@ -8,7 +8,7 @@ function createFormProj(modal) {
 
   const nameLabel = creator(form, 'label', 'append');
   nameLabel.setAttribute('for', 'name');
-  nameLabel.innerHTML = 'Project Name:';
+  nameLabel.innerHTML = 'Project Name';
   const name = creator(form, 'input', 'append');
   name.setAttribute('class', 'input-proj');
   addAttributestoInput(name, 'name', 'text');
@@ -18,15 +18,12 @@ function createFormProj(modal) {
   submitBtn.setAttribute('id', 'create-proj-btn');
   submitBtn.innerHTML = 'SUBMIT';
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
   return form;
 }
 
 function createProjectModal(main, projectsCont, Project) {
   const modal = createModal(main, 'New Project');
-  const form = createFormProj(modal);
+  const form = createFormProj(modal.children[0]);
   addCBToSubmit(form, modal, projectsCont, Project, 'input-proj');
   return modal;
 }
