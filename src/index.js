@@ -4,13 +4,13 @@ import Project from './modules/project';
 import ToDo from './modules/todo';
 import { createNav, liNamesList } from './modules/dom-navbar';
 import createProjectModal from './modules/dom-modal-proj';
+import { createToDoModal, inputInfo, radioButtons } from './modules/dom-modal-todo';
 
 const projectsCont = [];
 const content = document.getElementById('content');
 
 const main = creator(content, 'main', 'append');
 createNav(main, liNamesList);
-const modal = createProjectModal(main, projectsCont);
 
 const allToDos = creator(main, 'section', 'append');
 allToDos.setAttribute('id', 'sect-all-todos');
@@ -18,13 +18,16 @@ allToDos.setAttribute('id', 'sect-all-todos');
 const showToDo = creator(main, 'article', 'append');
 showToDo.setAttribute('id', 'sect-selected-todo');
 
+const modalProject = createProjectModal(main, projectsCont);
+const modalToDo = createToDoModal(main, inputInfo, radioButtons);
+
 const navList = document.getElementsByTagName('ul')[0].children;
 
 // const defaultProject = Project('default');
 // projectsCont.push(defaultProject);
 
 navList[1].addEventListener('click', () => {
-  modal.style.display = 'block';
+  modalProject.style.display = 'block';
 });
 
 navList[3].addEventListener('click', () => {

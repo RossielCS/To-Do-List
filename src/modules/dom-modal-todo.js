@@ -4,7 +4,15 @@ import verifyInput from './modal-proj';
 const inputInfo = [
   ['To-do Title:', 'title', 'text', 'input-todo', '\\D{3,30}'],
   ['Description:', 'description', 'text', 'input-todo', '\\D{3,50}'],
-  ['Notes:', 'notes', 'textarea', 'input-todo', ''],
+  ['Due Date:', 'due-date', 'date', 'input-todo', ''],
+  ['Notes:', 'notes', 'textarea', 'input-todo', '.{3,300}'],
+];
+
+const radioButtons = [
+  ['critical', 'radio', 'input-proj', '', 'priority'],
+  ['high', 'radio', 'input-proj', '', 'priority'],
+  ['medium', 'radio', 'input-proj', '', 'priority'],
+  ['low', 'radio', 'input-proj', '', 'priority'],
 ];
 
 function createModal(main, headerTitle) {
@@ -22,40 +30,67 @@ function createModal(main, headerTitle) {
 function addAttributestoInput(...params) {
   params[0].setAttribute('id', `${params[1]}`);
   params[0].setAttribute('type', `${params[2]}`);
-  params[0].setAttribute('name', `${params[1]}`);
   params[0].setAttribute('class', `${params[3]}`);
-  if (params[2] !== 'textarea') params[0].setAttribute('pattern', `${params[4]}`);
+  if (params[2] === 'radio') {
+    params[0].setAttribute('name', `${params[1]}`);
+    params[0].setAttribute('value', `${params[1]}`);
+  } else {
+    params[0].setAttribute('name', `${params[1]}`);
+  }
+  if (params[2] === 'text') params[0].setAttribute('pattern', `${params[4]}`);
   params[0].required = true;
 }
 
-function createFormToDo(modal) {
+function createFormToDo(modal, inputInfo, radioButtons) {
   const form = creator(modal, 'form', 'append');
-  form.setAttribute('id', 'proj-form');
-  /*
-  const nameLabel = creator(form, 'label', 'append');
-  nameLabel.setAttribute('for', 'name');
-  nameLabel.innerHTML = 'Project Name:';
+  form.setAttribute('id', 'todo-form');
 
-  const textBox = creator(form, 'p', 'append');
-  textBox.setAttribute('id', 'text-proj');
-  textBox.innerHTML = 'The name must be at least 3 characters long.';
-  textBox.style.display = 'none';
+  for (let i = 0; i < inputInfo.length; i += 1) {
+    if (i === 3) {
+      for (let i = 0; i < radioButtons.length; i += 1) {
+        const priorityTitle = creator(form, 'p', 'append');
+        priorityTitle.innerHTML = 'Priority:';
 
-  const name = creator(form, 'input', 'append');
-  addAttributestoInput(name, 'name', 'text', 'input-proj', '\\D{3,50}');
+        const critical = creator(form, 'input', 'append');
+        addAttributestoInput(critical, ...radioButtons[i]);
+      }
+    } else {
+      const element = creator(form, 'label', 'append');
+      element.setAttribute('for', `${inputInfo[i][1]}`);
+      element.innerHTML = `${inputInfo[i][0]}`;
+      const input = creator(form, 'input', 'append');
+      addAttributestoInput(
+        input, inputInfo[i][1], inputInfo[i][2], inputInfo[i][3], inputInfo[i][4],
+      );
+    }
+  }
 
   const submitBtn = creator(form, 'button', 'append');
   submitBtn.setAttribute('type', 'submit');
-  submitBtn.setAttribute('id', 'create-proj-btn');
+  submitBtn.setAttribute('id', 'create-todo-btn');
   submitBtn.innerHTML = 'SUBMIT';
-  return modalWindow;
-  */
-
-  for (let i = 0; i < inputInfo.length; i += 1) {
-    const element = creator(form, 'label', 'append');
-    element.setAttribute('for', 'name');
-    element.innerHTML = 'Project Name:';
-    const input = creator(form, 'input', 'append');
-    addAttributestoInput(input, 'name', 'text', 'input-proj', '\\D{3,50}');
-  }
 }
+
+function addCBToSubmit(modal, projectsCont) {
+  const button = document.getElementById('create-todo-btn');
+  const text = document.getElementById('text-todo');
+
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    const input = document.getElementsByClassName('input-todo');
+    if (!verifyInput(input, projectsCont, modal)) {
+      text.style.display = 'block';
+    } else {
+      text.style.display = 'none';
+    }
+  });
+}
+
+function createToDoModal(main, inputInfo, radioButtons, projectsCont) {
+  const modal = createModal(main, 'Add new To-Do');
+  createFormToDo(modal, inputInfo, radioButtons);
+  addCBToSubmit(modal, projectsCont);
+  return modal;
+}
+
+export { createToDoModal, inputInfo, radioButtons };
