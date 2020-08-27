@@ -1,5 +1,5 @@
 import './assets/stylesheets/style.scss';
-import creator from './modules/aux-methods';
+import { creator } from './modules/aux-methods';
 import Project from './modules/project';
 import ToDo from './modules/todo';
 import { createNav, liNamesList } from './modules/dom-navbar';
@@ -33,7 +33,7 @@ navList[1].addEventListener('click', () => {
 navList[2].addEventListener('click', () => {
   modalToDo.style.display = 'block';
 });
-
+/*
 navList[3].addEventListener('click', () => {
 });
 
@@ -44,4 +44,4 @@ form.forEach(
     return false;
   }),
 );
-console.log(form);
+*/

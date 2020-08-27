@@ -1,4 +1,4 @@
-import creator from './aux-methods';
+import { creator } from './aux-methods';
 
 function createNav(main, liNamesList) {
   const navbar = creator(main, 'nav', 'append');

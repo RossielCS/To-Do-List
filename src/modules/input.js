@@ -1,3 +1,5 @@
+import Project from './project';
+
 function clearInputs(inputs) {
   inputs.forEach(element => {
     element.value = '';
@@ -18,10 +20,10 @@ function getValues(allInputs) {
 
 function verifyInput(inputs, projectsCont, modal, objMethod) {
   const allInputs = [...inputs];
-  if (allInputs.all(x => x.checkValidity())) {
+  if (allInputs.every(x => x.checkValidity())) {
     const allValues = getValues(allInputs);
     const newObj = objMethod(...allValues);
-    // if (objMethod === Project) projectsCont.push(newObj);
+    if (objMethod === Project) projectsCont.push(newObj);
     clearInputs(allInputs);
     modal.style.display = 'none';
   } else {

@@ -1,5 +1,6 @@
-import creator from './aux-methods';
-import verifyInput from './modal-proj';
+import {
+  creator, createModal, addAttributestoInput, createFormEle, addCBToSubmit,
+} from './aux-methods';
 
 const inputInfo = [
   ['To-do Title:', 'title', 'text'],
@@ -14,41 +15,6 @@ const radioButtons = [
   ['medium', 'radio', 'priority'],
   ['low', 'radio', 'priority'],
 ];
-
-function createModal(main, headerTitle) {
-  const modalWindow = creator(main, 'div', 'append');
-  modalWindow.setAttribute('class', 'modal');
-
-  const modal = creator(modalWindow, 'div', 'append');
-  modal.setAttribute('class', 'modal-content');
-
-  const header = creator(modal, 'h3', 'append');
-  header.innerHTML = `${headerTitle}`;
-  return modalWindow;
-}
-
-function addAttributestoInput(...params) {
-  params[0].setAttribute('id', `${params[1]}`);
-  params[0].setAttribute('type', `${params[2]}`);
-  if (params[2] === 'radio') {
-    params[0].setAttribute('name', `${params[3]}`);
-    params[0].setAttribute('value', `${params[1]}`);
-  } else {
-    params[0].setAttribute('name', `${params[1]}`);
-  }
-  if (params[2] !== 'textarea') params[0].required = true;
-}
-
-function createFormEle(form, className, inputInfo, i) {
-  const element = creator(form, 'label', 'append');
-  element.innerHTML = `${inputInfo[i][0]}`;
-  element.setAttribute('for', `${inputInfo[i][1]}`);
-  const input = creator(form, 'input', 'append');
-  input.setAttribute('class', `${className}`);
-  addAttributestoInput(
-    input, inputInfo[i][1], inputInfo[i][2],
-  );
-}
 
 function createRadioBtn(form, className, radioButtons, i) {
   const radio = creator(form, 'input', 'append');
@@ -74,25 +40,21 @@ function createFormToDo(modal, className, inputInfo, radioButtons) {
     }
     createFormEle(form, className, inputInfo, i);
   }
-  return form;
-}
-
-function createSubmitBtn(form, modal, projectsCont, objMethod) {
   const submitBtn = creator(form, 'button', 'append');
   submitBtn.setAttribute('type', 'submit');
-  submitBtn.setAttribute('id', 'create-todo-btn');
   submitBtn.innerHTML = 'SUBMIT';
-  submitBtn.addEventListener('click', () => {
-    const input = document.getElementsByClassName('input-todo');
-    verifyInput(input, projectsCont, modal, objMethod);
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
   });
+  return form;
 }
 
 // main, inputInfo, radioButtons, projectsCont, objMethod
 function createToDoModal(...params) {
   const modal = createModal(params[0], 'Add new To-Do');
   const form = createFormToDo(modal, 'input-todo', params[1], params[2]);
-  createSubmitBtn(form, modal, params[3], params[4]);
+  addCBToSubmit(form, modal, params[3], params[4], 'input-todo');
   return modal;
 }
 
