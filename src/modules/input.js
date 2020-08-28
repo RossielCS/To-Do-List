@@ -9,16 +9,15 @@ function clearInputs(inputs) {
 function getValues(allInputs) {
   const values = [];
   for (let i = 0; i < allInputs.length; i += 1) {
-    if (allInputs[i].type === 'select') {
-      values.push(allInputs[i].options[allInputs[i].options.selectedIndex].value);
+    if (allInputs[i].value === '' && allInputs[i].id !== 'notes') {
+      return false;
     }
     if (allInputs[i].type === 'radio') {
       if (allInputs[i].checked) values.push(allInputs[i].value);
-    }
-    if (allInputs[i].value === '' && (allInputs[i].type === 'text' || allInputs[i].type === 'date') && allInputs[i].id !== 'notes') {
-      return false;
-    }
-    if (allInputs[i].value !== '' && allInputs[i].type !== 'radio') {
+    } else if (allInputs[i].type === 'select-one') {
+      values.push(allInputs[i].options[allInputs[i].options.selectedIndex].value);
+      values.push(allInputs[i].options.selectedIndex);
+    } else {
       values.push(allInputs[i].value);
     }
   }

@@ -7,14 +7,13 @@ import createProjectModal from './modules/dom-modal-proj';
 import { createToDoModal, inputInfo, radioButtons } from './modules/dom-modal-todo';
 
 const projectsCont = [];
-// let modalExists = false;
 const content = document.getElementById('content');
 
 const main = creator(content, 'main', 'append');
 createNav(main, liNamesList);
 
-const allToDos = creator(main, 'section', 'append');
-allToDos.setAttribute('id', 'sect-all-todos');
+// const allToDos = creator(main, 'section', 'append');
+// allToDos.setAttribute('id', 'sect-all-todos');
 
 const showToDo = creator(main, 'article', 'append');
 showToDo.setAttribute('id', 'sect-selected-todo');

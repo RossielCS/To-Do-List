@@ -1,6 +1,6 @@
 const ToDo = (
   title, descr, dueDate, priority,
-  project, notes = '',
+  projectName, projectIndex, notes = '',
 ) => {
   const priorityList = {
     '01': 'Critical',
@@ -8,22 +8,28 @@ const ToDo = (
     '03': 'Medium',
     '04': 'Low',
   };
-  const getProject = () => project;
+  const getProjectName = () => projectName;
+  const getProjectIndex = () => projectIndex;
   const getTitle = () => title;
   const getDescr = () => descr;
   const getDueDate = () => dueDate;
   const getPriority = () => priority;
   const getNotes = () => notes;
   return {
-    getProject,
+    getProjectName,
+    getProjectIndex,
     getTitle,
     getDescr,
     getDueDate,
     getPriority,
     getNotes,
     updateProject(newProject) {
-      project = newProject;
-      return project;
+      projectName = newProject;
+      return projectName;
+    },
+    updateProjectIndex(newIndex) {
+      projectIndex = newIndex;
+      return newIndex;
     },
     updateTitle(newTitle) {
       title = newTitle;
