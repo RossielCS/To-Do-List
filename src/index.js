@@ -30,7 +30,6 @@ navList[1].addEventListener('click', () => {
 });
 
 navList[2].addEventListener('click', () => {
-  console.log(projectsCont);
   const modalToDo = createToDoModal(
     main, inputInfo, radioButtons, projectsCont, ToDo, projectsCont,
   );

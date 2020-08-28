@@ -1,6 +1,6 @@
 const ToDo = (
-  project = 'default Project', title,
-  descr, dueDate, priority, notes = '',
+  title, descr, dueDate, priority,
+  project, notes = '',
 ) => {
   const priorityList = {
     '01': 'Critical',

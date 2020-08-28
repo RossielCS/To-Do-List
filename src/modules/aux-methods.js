@@ -47,11 +47,12 @@ function createFormEle(form, className, inputInfo, i, projectsList) {
     input = creator(form, 'select', 'append');
     input.setAttribute('class', `${className}`);
 
-    projectsList.forEach(x => {
+    for (let i = 0; i < projectsList.length; i += 1) {
       const option = creator(input, 'option', 'append');
-      option.setAttribute('value', `${x.getName()}`);
-      option.innerHTML = `${x.getName()}`;
-    });
+      option.setAttribute('value', `${projectsList[i].getName()}`);
+      option.innerHTML = `${projectsList[i].getName()}`;
+      if (i === 0) option.selected = true;
+    }
   } else {
     input = creator(form, 'input', 'append');
     input.setAttribute('class', `${className}`);
