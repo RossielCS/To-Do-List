@@ -6,7 +6,7 @@ import { createNav, liNamesList } from './modules/dom-navbar';
 import createProjectModal from './modules/dom-modal-proj';
 import { createToDoModal, inputInfo, radioButtons } from './modules/dom-modal-todo';
 
-const projectsCont = [];
+const projectsCont = {};
 const content = document.getElementById('content');
 
 const main = creator(content, 'main', 'append');
@@ -21,7 +21,8 @@ showToDo.setAttribute('id', 'sect-selected-todo');
 const navList = document.getElementsByTagName('ul')[0].children;
 
 const defaultProject = Project('default');
-projectsCont.push(defaultProject);
+projectsCont['0'] = defaultProject;
+projectsCont['1'] = Project('default2');
 
 navList[1].addEventListener('click', () => {
   if (!document.querySelector('.modal')) {

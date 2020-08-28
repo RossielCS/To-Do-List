@@ -1,17 +1,17 @@
-const Project = (name) => {
-  const getName = () => name;
+const Project = (title) => {
+  const getTitle = () => title;
   const toDos = [];
   const getToDos = () => toDos;
   return {
-    getName,
+    getTitle,
     getToDos,
     addToDo(toDo) {
       toDos.push(toDo);
       return toDos;
     },
-    updateName(newName) {
-      name = newName;
-      return newName;
+    updateName(newTitle) {
+      title = newTitle;
+      return title;
     },
   };
 };

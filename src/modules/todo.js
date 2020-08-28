@@ -29,7 +29,7 @@ const ToDo = (
     },
     updateProjectIndex(newIndex) {
       projectIndex = newIndex;
-      return newIndex;
+      return projectIndex;
     },
     updateTitle(newTitle) {
       title = newTitle;

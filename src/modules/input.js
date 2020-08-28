@@ -1,11 +1,5 @@
 import Project from './project';
 
-function clearInputs(inputs) {
-  inputs.forEach(element => {
-    element.value = '';
-  });
-}
-
 function getValues(allInputs) {
   const values = [];
   for (let i = 0; i < allInputs.length; i += 1) {
@@ -29,8 +23,11 @@ function verifyInput(inputs, projectsCont, modal, objMethod) {
   const allValues = getValues(allInputs);
   if (allValues) {
     const newObj = objMethod(...allValues);
-    if (objMethod === Project) projectsCont.push(newObj);
-    clearInputs(allInputs);
+    if (objMethod === Project) {
+      projectsCont.push(newObj);
+    } else {
+      projectsCont[newObj.getProjectIndex()].addToDo(newObj);
+    }
     modal.style.display = 'none';
     return true;
   }
