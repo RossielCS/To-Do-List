@@ -49,21 +49,24 @@ nav {
 }
 
 .modal {
+  position: absolute;
   display: none;
-  position: fixed;
   z-index: 1;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 50vw;
-  height: max-content;
-  background-color: #fff;
-  animation-name: animatetop;
-  animation-duration: 0.6s;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
 
   .modal-content {
+    position: fixed;
     padding: 5vh;
-    // height: ;
+    width: 50vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: max-content;
+    animation-name: animatetop;
+    animation-duration: 0.6s;
+    background-color: #fff;
 
     .input-msg-required {
       display: none;
@@ -103,16 +106,16 @@ nav {
       }
     }
   }
-}
 
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
+  @keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0;
+    }
 
-  to {
-    top: 50%;
-    opacity: 1;
+    to {
+      top: 50%;
+      opacity: 1;
+    }
   }
 }

@@ -1,6 +1,6 @@
 import {
   creator, createModal, addAttributestoInput,
-  createSubmitCancelBtn, addCBToSubmit, addCBToCancel,
+  createSubmitCancelBtn, addCBToSubmit, addCBToCancelAndModal,
 } from './aux-methods';
 
 function createFormProj(modal) {
@@ -22,7 +22,7 @@ function createProjectModal(main, projectsCont, Project) {
   const modal = createModal(main, 'New Project');
   const form = createFormProj(modal.children[0]);
   addCBToSubmit(form, modal, projectsCont, Project, 'input-proj');
-  addCBToCancel(form);
+  addCBToCancelAndModal(form);
   return modal;
 }
 

@@ -88,15 +88,18 @@ function addCBToSubmit(...params) {
   });
 }
 
-function addCBToCancel(form) {
+function addCBToCancelAndModal(form) {
   const btn = form.getElementsByTagName('button')[1];
-  btn.addEventListener('click', (e) => {
-    // e.preventDefault();
-    document.querySelector('.modal').remove();
+  const modalWindow = document.getElementsByClassName('modal')[0];
+  const arrEle = [btn, modalWindow];
+  arrEle.forEach(x => {
+    x.addEventListener('click', (e) => {
+      if (e.target === x) document.querySelector('.modal').remove();
+    });
   });
 }
 
 export {
   creator, createModal, addAttributestoInput, createFormEle,
-  createSubmitCancelBtn, addCBToSubmit, addCBToCancel,
+  createSubmitCancelBtn, addCBToSubmit, addCBToCancelAndModal,
 };

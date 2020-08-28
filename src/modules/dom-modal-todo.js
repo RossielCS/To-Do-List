@@ -1,6 +1,6 @@
 import {
   creator, createModal, addAttributestoInput, createFormEle,
-  createSubmitCancelBtn, addCBToSubmit, addCBToCancel,
+  createSubmitCancelBtn, addCBToSubmit, addCBToCancelAndModal,
 } from './aux-methods';
 
 const inputInfo = [
@@ -55,7 +55,7 @@ function createToDoModal(...params) {
   const modal = createModal(params[0], 'New To-Do');
   const form = createFormToDo(modal.children[0], 'input-todo', params[1], params[2], params[5]);
   addCBToSubmit(form, modal, params[3], params[4], 'input-todo');
-  addCBToCancel(form);
+  addCBToCancelAndModal(form);
   return modal;
 }
 
