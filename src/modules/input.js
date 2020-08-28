@@ -22,7 +22,7 @@ function getValues(allInputs) {
       values.push(allInputs[i].value);
     }
   }
-  return false;
+  return values;
 }
 
 function verifyInput(inputs, projectsCont, modal, objMethod) {
@@ -30,7 +30,6 @@ function verifyInput(inputs, projectsCont, modal, objMethod) {
   const allValues = getValues(allInputs);
   if (allValues) {
     const newObj = objMethod(...allValues);
-    console.log(newObj.getProject());
     if (objMethod === Project) projectsCont.push(newObj);
     clearInputs(allInputs);
     modal.style.display = 'none';

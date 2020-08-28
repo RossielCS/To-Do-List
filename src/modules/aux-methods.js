@@ -62,6 +62,16 @@ function createFormEle(form, className, inputInfo, i, projectsList) {
   );
 }
 
+function createSubmitCancelBtn(form) {
+  const submitBtn = creator(form, 'button', 'append');
+  submitBtn.setAttribute('type', 'submit');
+  submitBtn.innerHTML = 'SUBMIT';
+
+  const cancelBtn = creator(form, 'button', 'append');
+  cancelBtn.setAttribute('type', 'button');
+  cancelBtn.innerHTML = 'CANCEL';
+}
+
 function addCBToSubmit(...params) {
   const btn = params[0].getElementsByTagName('button')[0];
   btn.addEventListener('click', (e) => {
@@ -73,10 +83,20 @@ function addCBToSubmit(...params) {
       message.style.display = 'block';
     } else {
       message.style.display = 'none';
+      document.querySelector('.modal').remove();
     }
   });
 }
 
+function addCBToCancel(form) {
+  const btn = form.getElementsByTagName('button')[1];
+  btn.addEventListener('click', (e) => {
+    // e.preventDefault();
+    document.querySelector('.modal').remove();
+  });
+}
+
 export {
-  creator, createModal, addAttributestoInput, createFormEle, addCBToSubmit,
+  creator, createModal, addAttributestoInput, createFormEle,
+  createSubmitCancelBtn, addCBToSubmit, addCBToCancel,
 };
