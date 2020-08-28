@@ -19,18 +19,21 @@ const showToDo = creator(main, 'article', 'append');
 showToDo.setAttribute('id', 'sect-selected-todo');
 
 const modalProject = createProjectModal(main, projectsCont, Project);
-const modalToDo = createToDoModal(main, inputInfo, radioButtons, projectsCont, ToDo);
 
 const navList = document.getElementsByTagName('ul')[0].children;
 
-// const defaultProject = Project('default');
-// projectsCont.push(defaultProject);
+const defaultProject = Project('default');
+projectsCont.push(defaultProject);
 
 navList[1].addEventListener('click', () => {
   modalProject.style.display = 'block';
 });
 
 navList[2].addEventListener('click', () => {
+  console.log(projectsCont);
+  const modalToDo = createToDoModal(
+    main, inputInfo, radioButtons, projectsCont, ToDo, projectsCont,
+  );
   modalToDo.style.display = 'block';
 });
 

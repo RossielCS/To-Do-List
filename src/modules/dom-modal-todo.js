@@ -6,6 +6,7 @@ const inputInfo = [
   ['Title', 'title', 'text'],
   ['Description', 'description', 'text'],
   ['Due Date', 'due-date', 'date'],
+  ['Select which Project it belongs to', 'form-projects', 'select'],
   ['Notes (optional)', 'notes', 'textarea'],
 ];
 
@@ -28,7 +29,7 @@ function createRadioBtn(container, className, radioButtons, i) {
   if (i === 3) radio.checked = true;
 }
 
-function createFormToDo(modal, className, inputInfo, radioButtons) {
+function createFormToDo(modal, className, inputInfo, radioButtons, projectsList) {
   const form = creator(modal, 'form', 'append');
   form.setAttribute('id', 'todo-form');
   for (let i = 0; i < inputInfo.length; i += 1) {
@@ -42,7 +43,7 @@ function createFormToDo(modal, className, inputInfo, radioButtons) {
         createRadioBtn(radioContainer, className, radioButtons, i);
       }
     }
-    createFormEle(form, className, inputInfo, i);
+    createFormEle(form, className, inputInfo, i, projectsList);
   }
   const submitBtn = creator(form, 'button', 'append');
   submitBtn.setAttribute('type', 'submit');
@@ -54,7 +55,7 @@ function createFormToDo(modal, className, inputInfo, radioButtons) {
 // main, inputInfo, radioButtons, projectsCont, objMethod
 function createToDoModal(...params) {
   const modal = createModal(params[0], 'New To-Do');
-  const form = createFormToDo(modal.children[0], 'input-todo', params[1], params[2]);
+  const form = createFormToDo(modal.children[0], 'input-todo', params[1], params[2], params[5]);
   addCBToSubmit(form, modal, params[3], params[4], 'input-todo');
   return modal;
 }

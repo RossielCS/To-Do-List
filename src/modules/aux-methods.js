@@ -38,12 +38,24 @@ function addAttributestoInput(...params) {
   if (params[1] === 'notes') params[0].rows = '10';
 }
 
-function createFormEle(form, className, inputInfo, i) {
+function createFormEle(form, className, inputInfo, i, projectsList) {
   const element = creator(form, 'label', 'append');
   element.innerHTML = `${inputInfo[i][0]}`;
   element.setAttribute('for', `${inputInfo[i][1]}`);
-  const input = creator(form, 'input', 'append');
-  input.setAttribute('class', `${className}`);
+  let input = '';
+  if (inputInfo[i][2] === 'select') {
+    input = creator(form, 'select', 'append');
+    input.setAttribute('class', `${className}`);
+
+    projectsList.forEach(x => {
+      const option = creator(input, 'option', 'append');
+      option.setAttribute('value', `${x.getName()}`);
+      option.innerHTML = `${x.getName()}`;
+    });
+  } else {
+    input = creator(form, 'input', 'append');
+    input.setAttribute('class', `${className}`);
+  }
   addAttributestoInput(
     input, inputInfo[i][1], inputInfo[i][2],
   );
@@ -55,13 +67,12 @@ function addCBToSubmit(...params) {
     e.preventDefault();
     const input = document.getElementsByClassName(`${params[4]}`);
     const validation = verifyInput(input, params[2], params[1], params[3]);
-    console.log(e.target.closest('.radio-container'));
-    /* const message = document.getElementsByClassName('input-msg-required')[0];
+    const message = e.target.closest('.modal-content').children[1];
     if (!validation) {
-      message[0].style.display = 'block';
+      message.style.display = 'block';
     } else {
       message.style.display = 'none';
-    } */
+    }
   });
 }
 
