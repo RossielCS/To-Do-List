@@ -47,7 +47,16 @@ nav {
 
 #sect-selected-todo {
   width: 75%;
-  background-color: seagreen;
+
+  h1 {
+    height: 8%;
+    text-align: center;
+  }
+
+  section {
+    background-color: rgb(114, 168, 137);
+    height: 92%;
+  }
 }
 
 .modal {

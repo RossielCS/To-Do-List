@@ -5,6 +5,7 @@ import ToDo from './modules/todo';
 import { createNav, liNamesList } from './modules/dom-navbar';
 import createProjectModal from './modules/dom-modal-proj';
 import { createToDoModal, inputInfo, radioButtons } from './modules/dom-modal-todo';
+import createShowToDos from './modules/dom-show-todos';
 
 const projectsCont = {};
 const content = document.getElementById('content');
@@ -12,11 +13,11 @@ const content = document.getElementById('content');
 const main = creator(content, 'main', 'append');
 createNav(main, liNamesList);
 
+const displaySection = creator(main, 'article', 'append');
+displaySection.setAttribute('id', 'sect-selected-todo');
+
 // const allToDos = creator(main, 'section', 'append');
 // allToDos.setAttribute('id', 'sect-all-todos');
-
-const showToDo = creator(main, 'article', 'append');
-showToDo.setAttribute('id', 'sect-selected-todo');
 
 const navList = document.getElementsByTagName('ul')[0].children;
 
@@ -41,4 +42,8 @@ navList[2].addEventListener('click', () => {
 });
 
 navList[3].addEventListener('click', () => {
+});
+
+navList[4].addEventListener('click', () => {
+  createShowToDos(displaySection, projectsCont);
 });
