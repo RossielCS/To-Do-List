@@ -1,20 +1,21 @@
 import { creator } from './aux-methods';
 
 function showAllToDos(parent) {
-  const title = creator(parent, 'h1', 'append');
-  title.innerHTML = 'All TO-DOs';
-
   const body = creator(parent, 'section', 'append');
   body.innerHTML = 'BODY';
   body.setAttribute('id', 'show-proj-todo');
+
+  const title = creator(body, 'h1', 'append');
+  title.innerHTML = 'All TO-DOs';
 
   return body;
 }
 
 function objList(container, projectsCont) {
-  let ul = '';
+  const ulCont = creator(container, 'div', 'append');
+  ulCont.setAttribute('class', 'show-ul-cont');
   Object.values(projectsCont).forEach(proj => {
-    ul = creator(container, 'ul', 'append');
+    const ul = creator(ulCont, 'ul', 'append');
     const projTitle = creator(ul, 'h2', 'append');
     projTitle.innerHTML = proj.getTitle();
     const todos = proj.getToDos();
@@ -34,7 +35,7 @@ function objList(container, projectsCont) {
       notes.innerHTML = `${todos[i].getNotes()}`;
     }
   });
-  return ul;
+  return ulCont;
 }
 
 function createShowToDos(parent, projectsCont) {

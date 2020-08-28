@@ -84,6 +84,7 @@ function addCBToSubmit(...params) {
     } else {
       message.style.display = 'none';
       document.querySelector('.modal').remove();
+      document.getElementById('all-todos').click();
     }
   });
 }

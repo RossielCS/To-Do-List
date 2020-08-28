@@ -45,5 +45,12 @@ navList[3].addEventListener('click', () => {
 });
 
 navList[4].addEventListener('click', () => {
-  createShowToDos(displaySection, projectsCont);
+  if (!document.getElementById('show-proj-todo')) {
+    createShowToDos(displaySection, projectsCont);
+  } else {
+    document.getElementById('show-proj-todo').remove();
+    createShowToDos(displaySection, projectsCont);
+  }
 });
+
+navList[4].click();
