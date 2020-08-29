@@ -100,7 +100,38 @@ function addCBToCancelAndModal(form) {
   });
 }
 
+function createShowContainer(parent, idName, titleText) {
+  const body = creator(parent, 'section', 'append');
+  body.innerHTML = 'BODY';
+  body.setAttribute('id', `${idName}`);
+
+  const title = creator(body, 'h1', 'append');
+  title.innerHTML = `${titleText}`;
+
+  return body;
+}
+
+function createObjList(container, projectsCont, ulClass, method) {
+  const ulCont = creator(container, 'div', 'append');
+  ulCont.setAttribute('class', `${ulClass}`);
+  Object.values(projectsCont).forEach(proj => {
+    const ul = creator(ulCont, 'ul', 'append');
+    const projTitle = creator(ul, 'h2', 'append');
+    projTitle.innerHTML = proj.getTitle();
+    const todos = proj.getToDos();
+    method(todos, ul);
+  });
+  return ulCont;
+}
+
+function removeSection() {
+  if (document.getElementById('sect-selected-todo').children[0]) {
+    document.getElementById('sect-selected-todo').children[0].remove();
+  }
+}
+
 export {
   creator, createModal, addAttributestoInput, createFormEle,
   createSubmitCancelBtn, addCBToSubmit, addCBToCancelAndModal,
+  createShowContainer, createObjList, removeSection,
 };

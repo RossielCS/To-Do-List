@@ -5,7 +5,8 @@ import ToDo from './modules/todo';
 import { createNav, liNamesList } from './modules/dom-navbar';
 import createProjectModal from './modules/dom-modal-proj';
 import { createToDoModal, inputInfo, radioButtons } from './modules/dom-modal-todo';
-import createShowToDos from './modules/dom-show-todos';
+import { createShowToDos, todosInfo } from './modules/dom-show-todos';
+import { createShowProj, todosList } from './modules/dom-show-proj';
 
 const projectsCont = {};
 const content = document.getElementById('content');
@@ -42,15 +43,11 @@ navList[2].addEventListener('click', () => {
 });
 
 navList[3].addEventListener('click', () => {
+  createShowProj(displaySection, projectsCont, todosList);
 });
 
 navList[4].addEventListener('click', () => {
-  if (!document.getElementById('show-proj-todo')) {
-    createShowToDos(displaySection, projectsCont);
-  } else {
-    document.getElementById('show-proj-todo').remove();
-    createShowToDos(displaySection, projectsCont);
-  }
+  createShowToDos(displaySection, projectsCont, todosInfo);
 });
 
 navList[4].click();
