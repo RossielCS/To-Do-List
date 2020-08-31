@@ -24,7 +24,8 @@ function verifyInput(inputs, projectsCont, modal, objMethod) {
   if (allValues) {
     const newObj = objMethod(...allValues);
     if (objMethod === Project) {
-      projectsCont.push(newObj);
+      const index = Object.keys(projectsCont).length - 1;
+      projectsCont[index] = newObj;
     } else {
       projectsCont[newObj.getProjectIndex()].addToDo(newObj);
     }

@@ -17,14 +17,18 @@ createNav(main, liNamesList);
 const displaySection = creator(main, 'article', 'append');
 displaySection.setAttribute('id', 'sect-selected-todo');
 
-// const allToDos = creator(main, 'section', 'append');
-// allToDos.setAttribute('id', 'sect-all-todos');
+const defaultProject = Project('Project Default');
+projectsCont['0'] = defaultProject;
+projectsCont['1'] = Project('Project Two');
+
+const todoOne = ToDo('First TO-DO', 'This is a test.', '2020-10-15', 'critical', 'Project Default', '0', 'These are all the notes.');
+projectsCont['0'].addToDo(todoOne);
+const todoTwo = ToDo('Second TO-DO', 'This is a test.', '2020-11-21', 'low', 'Project Two', '1', 'These are all the notes.');
+projectsCont['1'].addToDo(todoTwo);
+const todoThree = ToDo('Third TO-DO', 'This is a test.', '2020-11-25', 'medium', 'Project Two', '1', 'These are all the notes.');
+projectsCont['1'].addToDo(todoThree);
 
 const navList = document.getElementsByTagName('ul')[0].children;
-
-const defaultProject = Project('default');
-projectsCont['0'] = defaultProject;
-projectsCont['1'] = Project('default2');
 
 navList[1].addEventListener('click', () => {
   if (!document.querySelector('.modal')) {
@@ -51,3 +55,6 @@ navList[4].addEventListener('click', () => {
 });
 
 navList[4].click();
+
+// const allToDos = creator(main, 'section', 'append');
+// allToDos.setAttribute('id', 'sect-all-todos');

@@ -48,7 +48,8 @@ nav {
 #sect-selected-todo {
   width: 75%;
 
-  #show-all-todo {
+  #show-all-todo,
+  #show-all-proj {
     height: 100%;
 
     h1 {
@@ -56,7 +57,25 @@ nav {
       text-align: center;
     }
 
+    ul {
+      margin: 20px;
+    }
+
+    li {
+      padding: 10px 20px;
+
+      div {
+        @include flex(row, space-between, center);
+      }
+    }
+  }
+
+  #show-all-todo {
     background-color: rgb(114, 168, 137);
+  }
+
+  #show-all-proj {
+    background-color: rgb(118, 114, 168);
   }
 }
 

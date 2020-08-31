@@ -84,7 +84,11 @@ function addCBToSubmit(...params) {
     } else {
       message.style.display = 'none';
       document.querySelector('.modal').remove();
-      document.getElementById('all-todos').click();
+      if (document.getElementById('show-all-proj')) {
+        document.getElementById('all-proj').click();
+      } else {
+        document.getElementById('all-todos').click();
+      }
     }
   });
 }
@@ -102,7 +106,6 @@ function addCBToCancelAndModal(form) {
 
 function createShowContainer(parent, idName, titleText) {
   const body = creator(parent, 'section', 'append');
-  body.innerHTML = 'BODY';
   body.setAttribute('id', `${idName}`);
 
   const title = creator(body, 'h1', 'append');
