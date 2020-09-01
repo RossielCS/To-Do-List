@@ -1,36 +1,53 @@
 import {
-  creator, createShowContainer, createObjList, removeSection,
+  creator, createShowContainer, removeSection, addDeleteMethod,
 } from './aux-methods';
 
-function todosInfo(todos, ul) {
-  for (let i = 0; i < todos.length; i += 1) {
+function getProjectsToDos(projectsCont) {
+  const allTodos = [];
+  Object.values(projectsCont).forEach(proj => {
+    const todos = proj.getToDos();
+    todos.map(x => allTodos.push(x));
+  });
+  console.log(allTodos);
+  return allTodos;
+}
+
+function todoList(container, projectsCont, ulClass) {
+  const ulCont = creator(container, 'div', 'append');
+  ulCont.setAttribute('class', `${ulClass}`);
+  const ul = creator(ulCont, 'ul', 'append');
+  const allTodos = getProjectsToDos(projectsCont);
+  for (let i = 0; i < allTodos.length; i += 1) {
     const li = creator(ul, 'li', 'append');
 
     const header = creator(li, 'div', 'append');
+    header.setAttribute('class', 'title-btn');
 
     const title = creator(header, 'h3', 'append');
-    title.innerHTML = `${todos[i].getTitle()}`;
+    title.innerHTML = `${allTodos[i].getTitle()}`;
 
     const deleteBtn = creator(header, 'button', 'append');
     deleteBtn.innerHTML = 'DELETE';
     deleteBtn.setAttribute('class', 'delete-todo');
+    addDeleteMethod(deleteBtn);
 
     const descr = creator(li, 'p', 'append');
-    descr.innerHTML = `${todos[i].getDescr()}`;
+    descr.innerHTML = `${allTodos[i].getDescr()}`;
 
     const dueDate = creator(li, 'p', 'append');
-    dueDate.innerHTML = `${todos[i].getDueDate()}`;
+    dueDate.innerHTML = `${allTodos[i].getDueDate()}`;
 
     const notes = creator(li, 'p', 'append');
-    notes.innerHTML = `${todos[i].getNotes()}`;
+    notes.innerHTML = `${allTodos[i].getNotes()}`;
   }
+  return ulCont;
 }
 
-function createShowToDos(parent, projectsCont, todosInfo) {
+function createShowToDos(parent, projectsCont) {
   removeSection();
   const container = createShowContainer(parent, 'show-all-todo', 'All TO-DOs');
-  createObjList(container, projectsCont, 'show-ul-cont', todosInfo);
+  todoList(container, projectsCont, 'show-ul-cont');
   return container;
 }
 
-export { createShowToDos, todosInfo };
+export default createShowToDos;

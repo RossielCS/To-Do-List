@@ -37,14 +37,6 @@ nav {
   }
 }
 
-/*
-#sect-all-todos {
-  width: 20%;
-  min-width: 200px;
-  background-color: salmon;
-}
-*/
-
 #sect-selected-todo {
   width: 75%;
 
@@ -57,14 +49,16 @@ nav {
       text-align: center;
     }
 
-    ul {
-      margin: 20px;
-    }
+    .show-ul-cont {
+      ul {
+        margin: 20px;
 
-    li {
-      padding: 10px 20px;
+        li {
+          padding: 10px 20px;
+        }
+      }
 
-      div {
+      .title-btn {
         @include flex(row, space-between, center);
       }
     }
