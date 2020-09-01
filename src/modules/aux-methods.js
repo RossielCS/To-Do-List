@@ -1,4 +1,4 @@
-import verifyInput from './input';
+import { verifyInput } from './input';
 
 function creator(parent, newElement, position) {
   const child = document.createElement(`${newElement}`);

@@ -8,6 +8,7 @@ const ToDo = (
     '03': 'Medium',
     '04': 'Low',
   };
+  let status = false;
   const getProjectName = () => projectName;
   const getProjectIndex = () => projectIndex;
   const getTitle = () => title;
@@ -15,6 +16,7 @@ const ToDo = (
   const getDueDate = () => dueDate;
   const getPriority = () => priority;
   const getNotes = () => notes;
+  const getStatus = () => status;
   return {
     getProjectName,
     getProjectIndex,
@@ -23,6 +25,7 @@ const ToDo = (
     getDueDate,
     getPriority,
     getNotes,
+    getStatus,
     updateProject(newProject) {
       projectName = newProject;
       return projectName;
@@ -50,6 +53,10 @@ const ToDo = (
     updateNotes(newNotes) {
       notes = newNotes;
       return notes;
+    },
+    updateStatus() {
+      status = !status;
+      return status;
     },
   };
 };

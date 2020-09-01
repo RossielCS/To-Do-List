@@ -2,6 +2,8 @@ import {
   creator, createShowContainer, removeSection, addDeleteMethod,
 } from './aux-methods';
 
+import { getValuesFromToDo } from './input';
+
 function getProjectsToDos(projectsCont) {
   const allTodos = [];
   Object.values(projectsCont).forEach(proj => {
@@ -25,6 +27,24 @@ function setPriority(priority) {
   }
 }
 
+function addCBToChangeStatus(element, todo) {
+  element.addEventListener('click', () => {
+    todo.updateStatus();
+  });
+}
+
+function addCBToEditToDo(todoContent, todo) {
+  todoContent.addEventListener('click', () => {
+    if (!document.querySelector('.modal')) {
+      document.getElementById('add-todo').click();
+      const modal = document.getElementsByClassName('modal')[0];
+      modal.style.visibility = 'hidden';
+      getValuesFromToDo(todo);
+      modal.style.visibility = 'visible';
+    }
+  });
+}
+
 function todoList(container, projectsCont, ulClass) {
   const ulCont = creator(container, 'div', 'append');
   ulCont.setAttribute('class', `${ulClass}`);
@@ -37,9 +57,11 @@ function todoList(container, projectsCont, ulClass) {
     const priorityText = setPriority(allTodos[i].getPriority());
     priority.setAttribute('class', `todo-priority ${priorityText.toLowerCase()}`);
     priority.innerHTML = `${priorityText}`;
+    addCBToChangeStatus(priority, allTodos[i]);
 
     const todoContent = creator(li, 'div', 'append');
     todoContent.setAttribute('class', 'todo-content');
+    addCBToEditToDo(todoContent, allTodos[i]);
 
     const header = creator(todoContent, 'div', 'append');
     header.setAttribute('class', 'title-btn');

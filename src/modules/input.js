@@ -35,4 +35,13 @@ function verifyInput(inputs, projectsCont, modal, objMethod) {
   return false;
 }
 
-export default verifyInput;
+function setValues(todoInfo) {
+  const inputs = document.getElementsByClassName('input-todo');
+  
+}
+
+function getValuesFromToDo(todo) {
+  
+}
+
+export { verifyInput, getValuesFromToDo };

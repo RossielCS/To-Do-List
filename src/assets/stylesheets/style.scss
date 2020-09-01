@@ -64,10 +64,18 @@ nav {
             text-align: center;
             line-height: 70px;
             border-radius: 100%;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
 
           .todo-content {
             width: 85%;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
 
           .critical {
