@@ -33,12 +33,23 @@ function addCBToChangeStatus(element, todo) {
   });
 }
 
+function createEditBtn(modal, button) {
+  const form = document.getElementById('todo-form');
+  const editBtn = creator(form, 'button', button);
+  editBtn.innerHTML = 'EDIT';
+  editBtn.addEventListener('click', () => {
+  });
+}
+
 function addCBToEditToDo(todoContent, todo) {
   todoContent.addEventListener('click', () => {
     if (!document.querySelector('.modal')) {
       document.getElementById('add-todo').click();
       const modal = document.getElementsByClassName('modal')[0];
       modal.style.visibility = 'hidden';
+      const btnSubmit = document.getElementsByClassName('btn-submit')[0];
+      createEditBtn(modal, btnSubmit);
+      btnSubmit.remove();
       getValuesFromToDo(todo);
       modal.style.visibility = 'visible';
     }

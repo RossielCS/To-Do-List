@@ -61,4 +61,10 @@ const ToDo = (
   };
 };
 
-export default ToDo;
+function setIndex(toDosCont) {
+  return Object.keys(toDosCont).length;
+}
+
+const toDosCont = {};
+
+export { ToDo, toDosCont, setIndex };

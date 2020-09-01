@@ -65,6 +65,7 @@ function createFormEle(form, className, inputInfo, i, projectsList) {
 function createSubmitCancelBtn(form) {
   const submitBtn = creator(form, 'button', 'append');
   submitBtn.setAttribute('type', 'submit');
+  submitBtn.setAttribute('class', 'btn-submit');
   submitBtn.innerHTML = 'SUBMIT';
 
   const cancelBtn = creator(form, 'button', 'append');

@@ -1,4 +1,5 @@
 import Project from './project';
+import { ToDo, toDosCont, setIndex } from './todo';
 
 function getValues(allInputs) {
   const values = [];
@@ -27,7 +28,7 @@ function verifyInput(inputs, projectsCont, modal, objMethod) {
       const index = Object.keys(projectsCont).length - 1;
       projectsCont[index] = newObj;
     } else {
-      projectsCont[newObj.getProjectIndex()].addToDo(newObj);
+      // projectsCont[newObj.getProjectIndex()].addToDo(newObj);
     }
     modal.style.display = 'none';
     return true;
@@ -62,7 +63,6 @@ function getValuesFromToDo(todo) {
     todo.getPriority(), todo.getProjectIndex(), todo.getNotes(),
   ];
   todoInfo = methods.map(x => x);
-  console.log(todoInfo);
   setValues(todoInfo);
   return todoInfo;
 }
