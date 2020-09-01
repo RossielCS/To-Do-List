@@ -21,11 +21,11 @@ const defaultProject = Project('Project Default');
 projectsCont['0'] = defaultProject;
 projectsCont['1'] = Project('Project Two');
 
-const todoOne = ToDo('First TO-DO', 'This is a test.', '2020-10-15', 'critical', 'Project Default', '0', 'These are all the notes.');
+const todoOne = ToDo('First TO-DO', 'This is a test.', '2020-10-15', '01', 'Project Default', '0', 'These are all the notes.');
 projectsCont['0'].addToDo(todoOne);
-const todoTwo = ToDo('Second TO-DO', 'This is a test.', '2020-11-21', 'low', 'Project Two', '1', 'These are all the notes.');
+const todoTwo = ToDo('Second TO-DO', 'This is a test.', '2020-11-21', '04', 'Project Two', '1', 'These are all the notes.');
 projectsCont['1'].addToDo(todoTwo);
-const todoThree = ToDo('Third TO-DO', 'This is a test.', '2020-11-25', 'medium', 'Project Two', '1', 'These are all the notes.');
+const todoThree = ToDo('Third TO-DO', 'This is a test.', '2020-11-25', '03', 'Project Two', '1', 'These are all the notes.');
 projectsCont['1'].addToDo(todoThree);
 
 const navList = document.getElementsByTagName('ul')[0].children;

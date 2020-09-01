@@ -31,11 +31,11 @@ function addAttributestoInput(...params) {
   params[0].setAttribute('type', `${params[2]}`);
   if (params[2] === 'radio') {
     params[0].setAttribute('name', `${params[3]}`);
-    params[0].setAttribute('value', `${params[1]}`);
+    params[0].setAttribute('value', `${params[4]}`);
   } else {
     params[0].setAttribute('name', `${params[1]}`);
   }
-  if (params[1] === 'notes') params[0].rows = '10';
+  if (params[1] === 'notes') params[0].maxLength = '200';
 }
 
 function createFormEle(form, className, inputInfo, i, projectsList) {

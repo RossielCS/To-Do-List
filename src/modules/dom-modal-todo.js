@@ -12,10 +12,10 @@ const inputInfo = [
 ];
 
 const radioButtons = [
-  ['critical', 'radio', 'priority'],
-  ['high', 'radio', 'priority'],
-  ['medium', 'radio', 'priority'],
-  ['low', 'radio', 'priority'],
+  ['critical', 'radio', 'priority', '01'],
+  ['high', 'radio', 'priority', '02'],
+  ['medium', 'radio', 'priority', '03'],
+  ['low', 'radio', 'priority', '04'],
 ];
 
 function createRadioBtn(container, className, radioButtons, i) {

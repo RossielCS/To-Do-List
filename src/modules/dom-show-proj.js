@@ -24,7 +24,6 @@ function projectsList(container, projectsCont, ulClass) {
 function createShowProj(parent, projectsCont) {
   removeSection();
   const container = createShowContainer(parent, 'show-all-proj', 'All Projects');
-  // createObjList(container, projectsCont, 'show-ul-cont', todosList);
   projectsList(container, projectsCont, 'show-ul-cont');
   return container;
 }
