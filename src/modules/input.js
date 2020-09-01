@@ -37,11 +37,34 @@ function verifyInput(inputs, projectsCont, modal, objMethod) {
 
 function setValues(todoInfo) {
   const inputs = document.getElementsByClassName('input-todo');
-  
+  let j = 0;
+  for (let i = 0; i < inputs.length; i += 1) {
+    if (i === 3) {
+      while (j < 7) {
+        inputs[j].checked = inputs[j].value === todoInfo[3];
+        j += 1;
+      }
+      i += 3;
+      j = 3;
+    } else if (inputs[i].type === 'select-one') {
+      inputs[i].options.selectedIndex = todoInfo[j];
+    } else {
+      inputs[i].value = todoInfo[j];
+    }
+    j += 1;
+  }
 }
 
 function getValuesFromToDo(todo) {
-  
+  let todoInfo = [];
+  const methods = [
+    todo.getTitle(), todo.getDescr(), todo.getDueDate(),
+    todo.getPriority(), todo.getProjectIndex(), todo.getNotes(),
+  ];
+  todoInfo = methods.map(x => x);
+  console.log(todoInfo);
+  setValues(todoInfo);
+  return todoInfo;
 }
 
 export { verifyInput, getValuesFromToDo };
