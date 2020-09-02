@@ -1,7 +1,8 @@
-import { Project } from './project';
+import { Project, projectsCont } from './project';
 import { toDosCont } from './todo';
 
-function getValuesFromInput(allInputs) {
+function getValuesFromInput(inputs) {
+  const allInputs = [...inputs];
   const values = [];
   for (let i = 0; i < allInputs.length; i += 1) {
     if (allInputs[i].value === '' && allInputs[i].id !== 'notes') {
@@ -19,12 +20,10 @@ function getValuesFromInput(allInputs) {
   return values;
 }
 
-function verifyInput(inputs, projectsCont, modal, objMethod) {
-  const allInputs = [...inputs];
-  const allValues = getValuesFromInput(allInputs);
+function verifyInput(inputsValues, projectsCont, modal, objMethod) {
   let index = '';
-  if (allValues) {
-    const newObj = objMethod(...allValues);
+  if (inputsValues) {
+    const newObj = objMethod(...inputsValues);
     if (objMethod === Project) {
       index = Object.keys(projectsCont).length + 1;
       projectsCont[index] = newObj;
@@ -70,4 +69,14 @@ function getValuesFromToDo(todo) {
   return todoInfo;
 }
 
-export { verifyInput, getValuesFromToDo };
+function updateValues(objIndex, formClass, inputsValues) {
+  const index = objIndex.slice(6);
+  if (formClass === 'todo-form') {
+    toDosCont[index]
+  } else {
+  }
+}
+
+export {
+  getValuesFromInput, verifyInput, getValuesFromToDo, updateValues,
+};

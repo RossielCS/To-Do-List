@@ -1,4 +1,4 @@
-import { verifyInput } from './input';
+import { getValuesFromInput, verifyInput, updateValues } from './input';
 
 function creator(parent, newElement, position) {
   const child = document.createElement(`${newElement}`);
@@ -78,7 +78,8 @@ function addCBToSubmit(...params) {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     const input = document.getElementsByClassName(`${params[4]}`);
-    const validation = verifyInput(input, params[2], params[1], params[3]);
+    const inputsValues = getValuesFromInput(input);
+    const validation = verifyInput(inputsValues, params[2], params[1], params[3]);
     const message = e.target.closest('.modal-content').children[1];
     if (!validation) {
       message.style.display = 'block';
@@ -121,12 +122,14 @@ function removeSection() {
   }
 }
 
-function createEditBtn(button, formClass) {
+function createEditBtn(button, formClass, inputClass, obj) {
   const form = document.getElementById(`${formClass}`);
   const editBtn = creator(form, 'button', button);
   editBtn.innerHTML = 'EDIT';
   editBtn.addEventListener('click', () => {
-    
+    const input = document.getElementsByClassName(`${inputClass}`);
+    const inputsValues = getValuesFromInput(input);
+    updateValues(obj.getIndex(), formClass, inputsValues);
   });
 }
 

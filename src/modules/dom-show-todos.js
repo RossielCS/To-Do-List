@@ -39,7 +39,7 @@ function addCBEditToDo(todoContent, todo) {
       const modal = document.getElementsByClassName('modal')[0];
       modal.style.visibility = 'hidden';
       const btnSubmit = document.getElementsByClassName('btn-submit')[0];
-      createEditBtn(btnSubmit, 'todo-form');
+      createEditBtn(btnSubmit, 'todo-form', 'input-todo', todo);
       createDeleteBtn(btnSubmit, 'todo-form');
       btnSubmit.remove();
       getValuesFromToDo(todo);
