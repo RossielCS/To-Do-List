@@ -121,9 +121,20 @@ function removeSection() {
   }
 }
 
-function addDeleteMethod(btn) {
-  // const btn = document.getElementsByClassName('delete-todo');
-  btn.addEventListener('click', (e) => {
+function createEditBtn(button, formClass) {
+  const form = document.getElementById(`${formClass}`);
+  const editBtn = creator(form, 'button', button);
+  editBtn.innerHTML = 'EDIT';
+  /* editBtn.addEventListener('click', () => {
+  }); */
+}
+
+function createDeleteBtn(button, formClass) {
+  const form = document.getElementById(`${formClass}`);
+  const deleteBtn = creator(form, 'button', button);
+  deleteBtn.innerHTML = 'DELETE';
+  deleteBtn.setAttribute('class', 'delete-todo');
+  deleteBtn.addEventListener('click', (e) => {
     e.target.closest('li').remove();
   });
 }
@@ -131,5 +142,6 @@ function addDeleteMethod(btn) {
 export {
   creator, createModal, addAttributestoInput, createFormEle,
   createSubmitCancelBtn, addCBToSubmit, addCBToCancelAndModal,
-  createShowContainer, removeSection, addDeleteMethod,
+  createShowContainer, removeSection, createEditBtn,
+  createDeleteBtn,
 };

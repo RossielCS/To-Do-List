@@ -17,7 +17,7 @@ const displaySection = creator(main, 'article', 'append');
 displaySection.setAttribute('id', 'sect-selected-todo');
 
 const defaultProject = Project('Project Default');
-projectsCont['0'] = defaultProject;
+projectsCont['1'] = defaultProject;
 /*
 projectsCont['1'] = Project('Project Two');
 

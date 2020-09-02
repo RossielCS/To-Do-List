@@ -61,10 +61,8 @@ const ToDo = (
   };
 };
 
-function setIndex(toDosCont) {
-  return Object.keys(toDosCont).length;
-}
-
 const toDosCont = {};
+const todoOne = ToDo('First TO-DO', 'This is a test.', '2020-10-15', '01', 'Project Default', '0', 'These are all the notes.');
+toDosCont['0'] = todoOne;
 
-export { ToDo, toDosCont, setIndex };
+export { ToDo, toDosCont };

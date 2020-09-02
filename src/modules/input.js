@@ -1,5 +1,5 @@
 import Project from './project';
-import { ToDo, toDosCont, setIndex } from './todo';
+import { toDosCont } from './todo';
 
 function getValues(allInputs) {
   const values = [];
@@ -25,10 +25,11 @@ function verifyInput(inputs, projectsCont, modal, objMethod) {
   if (allValues) {
     const newObj = objMethod(...allValues);
     if (objMethod === Project) {
-      const index = Object.keys(projectsCont).length - 1;
+      const index = Object.keys(projectsCont).length + 1;
       projectsCont[index] = newObj;
     } else {
-      // projectsCont[newObj.getProjectIndex()].addToDo(newObj);
+      const index = Object.keys(toDosCont).length + 1;
+      toDosCont[index] = newObj;
     }
     modal.style.display = 'none';
     return true;
