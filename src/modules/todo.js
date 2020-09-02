@@ -9,7 +9,8 @@ const ToDo = (
     '04': 'Low',
   };
   let status = false;
-  const getProjectName = () => projectName;
+  let index = '';
+  const getProjectTitle = () => projectName;
   const getProjectIndex = () => projectIndex;
   const getTitle = () => title;
   const getDescr = () => descr;
@@ -17,8 +18,9 @@ const ToDo = (
   const getPriority = () => priority;
   const getNotes = () => notes;
   const getStatus = () => status;
+  const getIndex = () => index;
   return {
-    getProjectName,
+    getProjectTitle,
     getProjectIndex,
     getTitle,
     getDescr,
@@ -26,6 +28,7 @@ const ToDo = (
     getPriority,
     getNotes,
     getStatus,
+    getIndex,
     updateProject(newProject) {
       projectName = newProject;
       return projectName;
@@ -58,11 +61,16 @@ const ToDo = (
       status = !status;
       return status;
     },
+    updateIndex(newIndex) {
+      index = newIndex;
+      return index;
+    },
   };
 };
 
 const toDosCont = {};
 const todoOne = ToDo('First TO-DO', 'This is a test.', '2020-10-15', '01', 'Project Default', '0', 'These are all the notes.');
-toDosCont['0'] = todoOne;
+todoOne.updateIndex('1');
+toDosCont['1'] = todoOne;
 
 export { ToDo, toDosCont };

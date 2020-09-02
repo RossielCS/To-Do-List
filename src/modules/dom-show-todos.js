@@ -64,6 +64,7 @@ function todoList(container, ulClass) {
 
     const todoContent = creator(li, 'div', 'append');
     todoContent.setAttribute('class', 'todo-content');
+    todoContent.setAttribute('id-data', `todo-${allTodos[i].getIndex()}`);
     addCBEditToDo(todoContent, allTodos[i]);
 
     const header = creator(todoContent, 'div', 'append');

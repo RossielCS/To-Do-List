@@ -125,8 +125,9 @@ function createEditBtn(button, formClass) {
   const form = document.getElementById(`${formClass}`);
   const editBtn = creator(form, 'button', button);
   editBtn.innerHTML = 'EDIT';
-  /* editBtn.addEventListener('click', () => {
-  }); */
+  editBtn.addEventListener('click', () => {
+    
+  });
 }
 
 function createDeleteBtn(button, formClass) {

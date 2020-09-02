@@ -1,7 +1,7 @@
-import Project from './project';
+import { Project } from './project';
 import { toDosCont } from './todo';
 
-function getValues(allInputs) {
+function getValuesFromInput(allInputs) {
   const values = [];
   for (let i = 0; i < allInputs.length; i += 1) {
     if (allInputs[i].value === '' && allInputs[i].id !== 'notes') {
@@ -21,23 +21,25 @@ function getValues(allInputs) {
 
 function verifyInput(inputs, projectsCont, modal, objMethod) {
   const allInputs = [...inputs];
-  const allValues = getValues(allInputs);
+  const allValues = getValuesFromInput(allInputs);
+  let index = '';
   if (allValues) {
     const newObj = objMethod(...allValues);
     if (objMethod === Project) {
-      const index = Object.keys(projectsCont).length + 1;
+      index = Object.keys(projectsCont).length + 1;
       projectsCont[index] = newObj;
     } else {
-      const index = Object.keys(toDosCont).length + 1;
+      index = Object.keys(toDosCont).length + 1;
       toDosCont[index] = newObj;
     }
+    newObj.updateIndex(index);
     modal.style.display = 'none';
     return true;
   }
   return false;
 }
 
-function setValues(todoInfo) {
+function setValuesForInputs(todoInfo) {
   const inputs = document.getElementsByClassName('input-todo');
   let j = 0;
   for (let i = 0; i < inputs.length; i += 1) {
@@ -64,7 +66,7 @@ function getValuesFromToDo(todo) {
     todo.getPriority(), todo.getProjectIndex(), todo.getNotes(),
   ];
   todoInfo = methods.map(x => x);
-  setValues(todoInfo);
+  setValuesForInputs(todoInfo);
   return todoInfo;
 }
 
