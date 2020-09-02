@@ -9,7 +9,7 @@ function projectsList(container, projectsCont, ulClass) {
   Object.values(projectsCont).forEach(proj => {
     const li = creator(ul, 'li', 'append');
     li.setAttribute('class', 'title-btn');
-    li.setAttribute('id-data', `proj-${proj.getIndex()}`);
+    // li.setAttribute('id-data', `proj-${proj.getIndex()}`);
 
     const projTitle = creator(li, 'h2', 'append');
     projTitle.innerHTML = proj.getTitle();

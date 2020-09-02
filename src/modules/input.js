@@ -70,10 +70,16 @@ function getValuesFromToDo(todo) {
 }
 
 function updateValues(objIndex, formClass, inputsValues) {
-  const index = objIndex.slice(6);
   if (formClass === 'todo-form') {
-    toDosCont[index]
+    toDosCont[objIndex].updateTitle(inputsValues[0]);
+    toDosCont[objIndex].updateDescr(inputsValues[1]);
+    toDosCont[objIndex].updateDueDate(inputsValues[2]);
+    toDosCont[objIndex].updatePriority(inputsValues[3]);
+    toDosCont[objIndex].updateProject(inputsValues[4]);
+    toDosCont[objIndex].updateProjectIndex(inputsValues[5]);
+    toDosCont[objIndex].updateNotes(inputsValues[6]);
   } else {
+    projectsCont[objIndex].updateTitle(inputsValues[0]);
   }
 }
 

@@ -32,7 +32,7 @@ function addCBToChangeStatus(element, todo) {
   });
 }
 
-function addCBEditToDo(todoContent, todo) {
+function addEditToContent(todoContent, todo) {
   todoContent.addEventListener('click', () => {
     if (!document.querySelector('.modal')) {
       document.getElementById('add-todo').click();
@@ -64,8 +64,8 @@ function todoList(container, ulClass) {
 
     const todoContent = creator(li, 'div', 'append');
     todoContent.setAttribute('class', 'todo-content');
-    todoContent.setAttribute('id-data', `todo-${allTodos[i].getIndex()}`);
-    addCBEditToDo(todoContent, allTodos[i]);
+    // todoContent.setAttribute('id-data', `todo-${allTodos[i].getIndex()}`);
+    addEditToContent(todoContent, allTodos[i]);
 
     const header = creator(todoContent, 'div', 'append');
     header.setAttribute('class', 'title-btn');

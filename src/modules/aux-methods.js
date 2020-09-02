@@ -122,15 +122,33 @@ function removeSection() {
   }
 }
 
+function addCBToEdit(button, formClass, inputClass, obj) {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    const message = e.target.closest('.modal-content').children[1];
+    const input = document.getElementsByClassName(`${inputClass}`);
+    const inputsValues = getValuesFromInput(input);
+    if (!inputsValues) {
+      message.style.display = 'block';
+    } else {
+      message.style.display = 'none';
+      updateValues(obj.getIndex(), formClass, inputsValues);
+      document.querySelector('.modal').remove();
+      if (document.getElementById('show-all-proj')) {
+        document.getElementById('all-proj').click();
+      } else {
+        document.getElementById('all-todos').click();
+      }
+    }
+  });
+}
+
 function createEditBtn(button, formClass, inputClass, obj) {
   const form = document.getElementById(`${formClass}`);
   const editBtn = creator(form, 'button', button);
   editBtn.innerHTML = 'EDIT';
-  editBtn.addEventListener('click', () => {
-    const input = document.getElementsByClassName(`${inputClass}`);
-    const inputsValues = getValuesFromInput(input);
-    updateValues(obj.getIndex(), formClass, inputsValues);
-  });
+  addCBToEdit(editBtn, formClass, inputClass, obj);
+  return editBtn;
 }
 
 function createDeleteBtn(button, formClass) {
