@@ -7,6 +7,10 @@ function createFormProj(modal) {
   const form = creator(modal, 'form', 'append');
   form.setAttribute('id', 'proj-form');
 
+  const deleteWarning = creator(form, 'p', 'append');
+  deleteWarning.setAttribute('id', 'delete-warning');
+  deleteWarning.innerHTML = 'IMPORTANT: If you delete a project, all associated to-dos will be deleted as well.';
+
   const nameLabel = creator(form, 'label', 'append');
   nameLabel.setAttribute('for', 'name');
   nameLabel.innerHTML = 'Project Name';

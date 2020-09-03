@@ -1,5 +1,5 @@
 import {
-  creator, createShowContainer, removeSection, addEditToContent,
+  creator, createShowContainer, removeSection, addEditingToElement,
 } from './aux-methods';
 import { toDosCont } from './todo';
 
@@ -10,15 +10,17 @@ function projectsList(container, projectsCont, ulClass) {
   Object.values(projectsCont).forEach(proj => {
     const li = creator(ul, 'li', 'append');
     li.setAttribute('class', 'title-btn');
-    addEditToContent(li, 'add-proj', 'proj-form', 'input-proj', proj);
+    addEditingToElement(li, 'add-proj', 'proj-form', 'input-proj', proj);
     li.setAttribute('id-data', `proj-${proj.getIndex()}`);
 
     const projTitle = creator(li, 'h2', 'append');
     projTitle.innerHTML = proj.getTitle();
 
     const todo = Object.values(toDosCont).filter(x => x.getProjIndex() === proj.getIndex());
-    const todoTitle = creator(li, 'h3', 'append');
-    todoTitle.innerHTML = todo[0].getTitle();
+    if (todo.length) {
+      const todoTitle = creator(li, 'h3', 'append');
+      todoTitle.innerHTML = todo[0].getTitle();
+    }
   });
   return ulCont;
 }

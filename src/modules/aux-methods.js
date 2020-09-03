@@ -86,7 +86,7 @@ function reloadPage() {
   }
 }
 
-// Params:
+// Params: form, modal, projectsCont, objMethod, formClass
 function addCBToSubmit(...params) {
   const btn = params[0].getElementsByTagName('button')[0];
   btn.addEventListener('click', (e) => {
@@ -187,7 +187,7 @@ function createDeleteBtn(button, formClass) {
 }
 
 // Params: element, navlinkClass, formClass, inputClass, obj
-function addEditToContent(...params) {
+function addEditingToElement(...params) {
   params[0].addEventListener('click', (e) => {
     if (!document.querySelector('.modal')) {
       document.getElementById(`${params[1]}`).click();
@@ -196,6 +196,8 @@ function addEditToContent(...params) {
       if (params[4].getIndex() !== '0') {
         const deleteBtn = createDeleteBtn(btnSubmit, `${params[2]}`);
         deleteObject(deleteBtn, e.target, params[2]);
+        const warningMessage = document.getElementById('delete-warning');
+        if (warningMessage) warningMessage.style.display = 'block';
       }
       btnSubmit.remove();
       if (params[2] === 'todo-form') {
@@ -213,5 +215,5 @@ export {
   creator, createModal, addAttributestoInput, createFormEle,
   createSubmitCancelBtn, addCBToSubmit, addCBToCancelAndModal,
   createShowContainer, removeSection, createEditBtn,
-  createDeleteBtn, addEditToContent,
+  createDeleteBtn, addEditingToElement,
 };

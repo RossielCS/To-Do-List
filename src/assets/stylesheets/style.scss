@@ -136,7 +136,8 @@ nav {
     animation-duration: 0.6s;
     background-color: #fff;
 
-    .input-msg-required {
+    .input-msg-required,
+    #delete-warning {
       display: none;
     }
 

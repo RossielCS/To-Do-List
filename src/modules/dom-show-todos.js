@@ -1,5 +1,5 @@
 import {
-  creator, createShowContainer, removeSection, addEditToContent,
+  creator, createShowContainer, removeSection, addEditingToElement,
 } from './aux-methods';
 import { toDosCont } from './todo';
 
@@ -50,7 +50,7 @@ function todoList(container, ulClass) {
 
     const todoContent = creator(li, 'div', 'append');
     todoContent.setAttribute('class', 'todo-content');
-    addEditToContent(todoContent, 'add-todo', 'todo-form', 'input-todo', allTodos[i]);
+    addEditingToElement(todoContent, 'add-todo', 'todo-form', 'input-todo', allTodos[i]);
 
     const header = creator(todoContent, 'div', 'append');
     header.setAttribute('class', 'title-btn');
