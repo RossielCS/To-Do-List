@@ -2,6 +2,8 @@ import {
   getValuesFromInput, verifyInput, setValuesForInputs,
   getValuesFromToDo, updateValues, setValueToInputProj,
 } from './input';
+import { toDosCont } from './todo';
+import { projectsCont } from './project';
 
 function creator(parent, newElement, position) {
   const child = document.createElement(`${newElement}`);
@@ -154,24 +156,45 @@ function createEditBtn(button, formClass, inputClass, obj) {
   return editBtn;
 }
 
+function deleteObject(deleteBtn, element, formClass) {
+  deleteBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const li = element.closest('li');
+    const index = li.getAttribute('id-data').slice(5);
+    li.remove();
+    if (formClass === 'todo-form') {
+      delete toDosCont[index];
+    } else {
+      delete projectsCont[index];
+    }
+    document.querySelector('.modal').remove();
+    if (document.getElementById('show-all-proj')) {
+      document.getElementById('all-proj').click();
+    } else {
+      document.getElementById('all-todos').click();
+    }
+  });
+}
+
 function createDeleteBtn(button, formClass) {
   const form = document.getElementById(`${formClass}`);
   const deleteBtn = creator(form, 'button', button);
   deleteBtn.innerHTML = 'DELETE';
   deleteBtn.setAttribute('class', 'delete-todo');
-  deleteBtn.addEventListener('click', (e) => {
-    e.target.closest('li').remove();
-  });
+  return deleteBtn;
 }
 
 // Params: element, navlinkClass, formClass, inputClass, obj
 function addEditToContent(...params) {
-  params[0].addEventListener('click', () => {
+  params[0].addEventListener('click', (e) => {
     if (!document.querySelector('.modal')) {
       document.getElementById(`${params[1]}`).click();
       const btnSubmit = document.getElementsByClassName('btn-submit')[0];
       createEditBtn(btnSubmit, `${params[2]}`, `${params[3]}`, params[4]);
-      if (params[4].getIndex() !== '0') createDeleteBtn(btnSubmit, `${params[2]}`);
+      if (params[4].getIndex() !== '0') {
+        const deleteBtn = createDeleteBtn(btnSubmit, `${params[2]}`);
+        deleteObject(deleteBtn, e.target, params[2]);
+      }
       btnSubmit.remove();
       if (params[2] === 'todo-form') {
         const todoInfo = getValuesFromToDo(params[4]);

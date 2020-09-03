@@ -38,6 +38,7 @@ function todoList(container, ulClass) {
   const allTodos = sortToDos(toDosCont);
   for (let i = 0; i < allTodos.length; i += 1) {
     const li = creator(ul, 'li', 'append');
+    li.setAttribute('id-data', `todo-${allTodos[i].getIndex()}`);
 
     const priority = creator(li, 'div', 'append');
     const priorityText = setPriority(allTodos[i].getPriority());
@@ -47,7 +48,6 @@ function todoList(container, ulClass) {
 
     const todoContent = creator(li, 'div', 'append');
     todoContent.setAttribute('class', 'todo-content');
-    // todoContent.setAttribute('id-data', `todo-${allTodos[i].getIndex()}`);
     addEditToContent(todoContent, 'add-todo', 'todo-form', 'input-todo', allTodos[i]);
 
     const header = creator(todoContent, 'div', 'append');

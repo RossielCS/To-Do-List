@@ -10,7 +10,7 @@ function projectsList(container, projectsCont, ulClass) {
     const li = creator(ul, 'li', 'append');
     li.setAttribute('class', 'title-btn');
     addEditToContent(li, 'add-proj', 'proj-form', 'input-proj', proj);
-    // li.setAttribute('id-data', `proj-${proj.getIndex()}`);
+    li.setAttribute('id-data', `proj-${proj.getIndex()}`);
 
     const projTitle = creator(li, 'h2', 'append');
     projTitle.innerHTML = proj.getTitle();

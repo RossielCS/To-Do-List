@@ -17,5 +17,6 @@ const Project = (title) => {
 };
 
 const projectsCont = {};
+window.localStorage.setItem('projectsCont', JSON.stringify(projectsCont));
 
 export { Project, projectsCont };
