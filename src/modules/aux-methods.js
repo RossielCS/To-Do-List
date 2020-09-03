@@ -162,7 +162,7 @@ function createEditBtn(button, formClass, inputClass, obj) {
   return editBtn;
 }
 
-function deleteObject(deleteBtn, element, formClass) {
+function addCBToDeleteBtn(deleteBtn, element, formClass) {
   deleteBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const li = element.closest('li');
@@ -171,6 +171,10 @@ function deleteObject(deleteBtn, element, formClass) {
     if (formClass === 'todo-form') {
       delete toDosCont[index];
     } else {
+      const projAllTodos = Object.values(toDosCont).filter(x => x.getProjIndex() === index);
+      projAllTodos.forEach(x => {
+        delete toDosCont[x.getIndex()];
+      });
       delete projectsCont[index];
     }
     document.querySelector('.modal').remove();
@@ -195,7 +199,7 @@ function addEditingToElement(...params) {
       createEditBtn(btnSubmit, `${params[2]}`, `${params[3]}`, params[4]);
       if (params[4].getIndex() !== '0') {
         const deleteBtn = createDeleteBtn(btnSubmit, `${params[2]}`);
-        deleteObject(deleteBtn, e.target, params[2]);
+        addCBToDeleteBtn(deleteBtn, e.target, params[2]);
         const warningMessage = document.getElementById('delete-warning');
         if (warningMessage) warningMessage.style.display = 'block';
       }
