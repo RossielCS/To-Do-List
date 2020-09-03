@@ -78,6 +78,14 @@ function createSubmitCancelBtn(form) {
   cancelBtn.innerHTML = 'CANCEL';
 }
 
+function reloadPage() {
+  if (document.getElementById('show-all-proj')) {
+    document.getElementById('all-proj').click();
+  } else {
+    document.getElementById('all-todos').click();
+  }
+}
+
 // Params:
 function addCBToSubmit(...params) {
   const btn = params[0].getElementsByTagName('button')[0];
@@ -90,13 +98,13 @@ function addCBToSubmit(...params) {
     if (!validation) {
       message.style.display = 'block';
     } else {
+      const form = document.getElementById('todo-form');
       message.style.display = 'none';
       document.querySelector('.modal').remove();
-      // Refactor
-      if (document.getElementById('show-all-proj')) {
-        document.getElementById('all-proj').click();
-      } else {
+      if (form) {
         document.getElementById('all-todos').click();
+      } else {
+        document.getElementById('all-proj').click();
       }
     }
   });
@@ -141,12 +149,7 @@ function addCBToEditBtn(button, formClass, inputClass, obj) {
       message.style.display = 'none';
       updateValues(obj.getIndex(), formClass, inputsValues);
       document.querySelector('.modal').remove();
-      // Refactor
-      if (document.getElementById('show-all-proj')) {
-        document.getElementById('all-proj').click();
-      } else {
-        document.getElementById('all-todos').click();
-      }
+      reloadPage();
     }
   });
 }
@@ -171,12 +174,7 @@ function deleteObject(deleteBtn, element, formClass) {
       delete projectsCont[index];
     }
     document.querySelector('.modal').remove();
-    // Refactor
-    if (document.getElementById('show-all-proj')) {
-      document.getElementById('all-proj').click();
-    } else {
-      document.getElementById('all-todos').click();
-    }
+    reloadPage();
   });
 }
 

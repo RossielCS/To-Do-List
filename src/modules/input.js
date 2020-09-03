@@ -66,7 +66,6 @@ function setValueToInputProj(title) {
 function updateValues(objIndex, formClass, inputsValues) {
   if (formClass === 'todo-form') {
     toDosCont[objIndex].updateAllProp(...inputsValues);
-    console.log(toDosCont[objIndex].getAllProp());
   } else {
     projectsCont[objIndex].updateTitle(inputsValues[0]);
   }

@@ -7,12 +7,14 @@ const ToDo = (
   const getAllProp = () => [title, descr, dueDate, priority, projIndex, notes];
   const getProjTitle = () => projName;
   const getProjIndex = () => projIndex;
+  const getPriority = () => priority;
   const getStatus = () => status;
   const getIndex = () => index;
   return {
     getAllProp,
     getProjTitle,
     getProjIndex,
+    getPriority,
     getStatus,
     getIndex,
     updateAllProp(...params) {
