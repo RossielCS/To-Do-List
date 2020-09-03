@@ -97,7 +97,7 @@ nav {
       }
 
       .title-btn {
-        // @include flex(row, space-between, center);
+        @include flex(column, center, flex-start);
 
         &:hover {
           cursor: pointer;

@@ -1,6 +1,7 @@
 import {
   creator, createShowContainer, removeSection, addEditToContent,
 } from './aux-methods';
+import { toDosCont } from './todo';
 
 function projectsList(container, projectsCont, ulClass) {
   const ulCont = creator(container, 'div', 'append');
@@ -14,6 +15,10 @@ function projectsList(container, projectsCont, ulClass) {
 
     const projTitle = creator(li, 'h2', 'append');
     projTitle.innerHTML = proj.getTitle();
+
+    const todo = Object.values(toDosCont).filter(x => x.getProjIndex() === proj.getIndex());
+    const todoTitle = creator(li, 'h3', 'append');
+    todoTitle.innerHTML = todo[0].getTitle();
   });
   return ulCont;
 }

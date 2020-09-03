@@ -7,6 +7,7 @@ const ToDo = (
   const getAllProp = () => [title, descr, dueDate, priority, projIndex, notes];
   const getProjTitle = () => projName;
   const getProjIndex = () => projIndex;
+  const getTitle = () => title;
   const getPriority = () => priority;
   const getStatus = () => status;
   const getIndex = () => index;
@@ -14,6 +15,7 @@ const ToDo = (
     getAllProp,
     getProjTitle,
     getProjIndex,
+    getTitle,
     getPriority,
     getStatus,
     getIndex,
