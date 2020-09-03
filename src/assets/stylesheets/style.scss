@@ -98,6 +98,10 @@ nav {
 
       .title-btn {
         @include flex(row, space-between, center);
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }

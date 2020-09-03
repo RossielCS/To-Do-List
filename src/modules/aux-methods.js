@@ -1,4 +1,7 @@
-import { getValuesFromInput, verifyInput, updateValues } from './input';
+import {
+  getValuesFromInput, verifyInput, getValuesFromToDo,
+  updateValues, setValueToInputProj,
+} from './input';
 
 function creator(parent, newElement, position) {
   const child = document.createElement(`${newElement}`);
@@ -122,7 +125,7 @@ function removeSection() {
   }
 }
 
-function addCBToEdit(button, formClass, inputClass, obj) {
+function addCBToEditBtn(button, formClass, inputClass, obj) {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const message = e.target.closest('.modal-content').children[1];
@@ -147,7 +150,7 @@ function createEditBtn(button, formClass, inputClass, obj) {
   const form = document.getElementById(`${formClass}`);
   const editBtn = creator(form, 'button', button);
   editBtn.innerHTML = 'EDIT';
-  addCBToEdit(editBtn, formClass, inputClass, obj);
+  addCBToEditBtn(editBtn, formClass, inputClass, obj);
   return editBtn;
 }
 
@@ -161,9 +164,31 @@ function createDeleteBtn(button, formClass) {
   });
 }
 
+// Params: element, navlinkClass, formClass, inputClass, obj
+function addEditToContent(...params) {
+  params[0].addEventListener('click', () => {
+    if (!document.querySelector('.modal')) {
+      document.getElementById(`${params[1]}`).click();
+      const modal = document.getElementsByClassName('modal')[0];
+      modal.style.visibility = 'hidden';
+      const btnSubmit = document.getElementsByClassName('btn-submit')[0];
+      createEditBtn(btnSubmit, `${params[2]}`, `${params[3]}`, `${params[4]}`);
+      createDeleteBtn(btnSubmit, `${params[2]}`);
+      btnSubmit.remove();
+      if (params[2] === 'todo-form') {
+        getValuesFromToDo(`${params[4]}`);
+      } else {
+        const projTitle = params[4].getTitle();
+        setValueToInputProj(projTitle);
+      }
+      modal.style.visibility = 'visible';
+    }
+  });
+}
+
 export {
   creator, createModal, addAttributestoInput, createFormEle,
   createSubmitCancelBtn, addCBToSubmit, addCBToCancelAndModal,
   createShowContainer, removeSection, createEditBtn,
-  createDeleteBtn,
+  createDeleteBtn, addEditToContent,
 };

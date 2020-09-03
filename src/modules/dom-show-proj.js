@@ -1,5 +1,5 @@
 import {
-  creator, createShowContainer, removeSection,
+  creator, createShowContainer, removeSection, addEditToContent,
 } from './aux-methods';
 
 function projectsList(container, projectsCont, ulClass) {
@@ -9,14 +9,16 @@ function projectsList(container, projectsCont, ulClass) {
   Object.values(projectsCont).forEach(proj => {
     const li = creator(ul, 'li', 'append');
     li.setAttribute('class', 'title-btn');
+    addEditToContent(li, 'add-proj', 'proj-form', 'input-proj', proj);
     // li.setAttribute('id-data', `proj-${proj.getIndex()}`);
 
     const projTitle = creator(li, 'h2', 'append');
     projTitle.innerHTML = proj.getTitle();
-
+    /*
     const deleteBtn = creator(li, 'button', 'append');
     deleteBtn.innerHTML = 'DELETE';
     deleteBtn.setAttribute('class', 'delete-todo');
+    */
     // addDeleteMethod(deleteBtn);
   });
   return ulCont;

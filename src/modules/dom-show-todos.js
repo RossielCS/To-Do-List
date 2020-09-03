@@ -1,7 +1,6 @@
 import {
-  creator, createShowContainer, removeSection, createEditBtn, createDeleteBtn,
+  creator, createShowContainer, removeSection, addEditToContent,
 } from './aux-methods';
-import { getValuesFromToDo } from './input';
 import { toDosCont } from './todo';
 
 function sortToDos(toDosCont) {
@@ -32,22 +31,6 @@ function addCBToChangeStatus(element, todo) {
   });
 }
 
-function addEditToContent(todoContent, todo) {
-  todoContent.addEventListener('click', () => {
-    if (!document.querySelector('.modal')) {
-      document.getElementById('add-todo').click();
-      const modal = document.getElementsByClassName('modal')[0];
-      modal.style.visibility = 'hidden';
-      const btnSubmit = document.getElementsByClassName('btn-submit')[0];
-      createEditBtn(btnSubmit, 'todo-form', 'input-todo', todo);
-      createDeleteBtn(btnSubmit, 'todo-form');
-      btnSubmit.remove();
-      getValuesFromToDo(todo);
-      modal.style.visibility = 'visible';
-    }
-  });
-}
-
 function todoList(container, ulClass) {
   const ulCont = creator(container, 'div', 'append');
   ulCont.setAttribute('class', `${ulClass}`);
@@ -65,7 +48,7 @@ function todoList(container, ulClass) {
     const todoContent = creator(li, 'div', 'append');
     todoContent.setAttribute('class', 'todo-content');
     // todoContent.setAttribute('id-data', `todo-${allTodos[i].getIndex()}`);
-    addEditToContent(todoContent, allTodos[i]);
+    addEditToContent(todoContent, 'add-todo', 'todo-form', 'input-todo', allTodos[i]);
 
     const header = creator(todoContent, 'div', 'append');
     header.setAttribute('class', 'title-btn');

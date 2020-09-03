@@ -50,7 +50,7 @@ const ToDo = (
       return dueDate;
     },
     updatePriority(newPriority) {
-      priority = priorityList[newPriority];
+      priority = newPriority;
       return priority;
     },
     updateNotes(newNotes) {
