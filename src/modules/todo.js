@@ -2,12 +2,13 @@ const ToDo = (
   title, descr, dueDate, priority,
   projectName, projectIndex, notes = '',
 ) => {
+  /*
   const priorityList = {
     '01': 'Critical',
     '02': 'High',
     '03': 'Medium',
     '04': 'Low',
-  };
+  }; */
   let status = false;
   let index = '';
   const getProjectTitle = () => projectName;

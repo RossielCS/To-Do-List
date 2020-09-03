@@ -65,8 +65,12 @@ function getValuesFromToDo(todo) {
     todo.getPriority(), todo.getProjectIndex(), todo.getNotes(),
   ];
   todoInfo = methods.map(x => x);
-  setValuesForInputs(todoInfo);
   return todoInfo;
+}
+
+function setValueToInputProj(title) {
+  const inputs = document.getElementsByClassName('input-proj');
+  inputs[0].value = title;
 }
 
 function updateValues(objIndex, formClass, inputsValues) {
@@ -84,5 +88,6 @@ function updateValues(objIndex, formClass, inputsValues) {
 }
 
 export {
-  getValuesFromInput, verifyInput, getValuesFromToDo, updateValues,
+  getValuesFromInput, verifyInput, setValuesForInputs,
+  getValuesFromToDo, updateValues, setValueToInputProj,
 };

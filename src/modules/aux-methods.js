@@ -1,6 +1,6 @@
 import {
-  getValuesFromInput, verifyInput, getValuesFromToDo,
-  updateValues, setValueToInputProj,
+  getValuesFromInput, verifyInput, setValuesForInputs,
+  getValuesFromToDo, updateValues, setValueToInputProj,
 } from './input';
 
 function creator(parent, newElement, position) {
@@ -169,19 +169,17 @@ function addEditToContent(...params) {
   params[0].addEventListener('click', () => {
     if (!document.querySelector('.modal')) {
       document.getElementById(`${params[1]}`).click();
-      const modal = document.getElementsByClassName('modal')[0];
-      modal.style.visibility = 'hidden';
       const btnSubmit = document.getElementsByClassName('btn-submit')[0];
-      createEditBtn(btnSubmit, `${params[2]}`, `${params[3]}`, `${params[4]}`);
-      createDeleteBtn(btnSubmit, `${params[2]}`);
+      createEditBtn(btnSubmit, `${params[2]}`, `${params[3]}`, params[4]);
+      if (params[4].getIndex() !== '0') createDeleteBtn(btnSubmit, `${params[2]}`);
       btnSubmit.remove();
       if (params[2] === 'todo-form') {
-        getValuesFromToDo(`${params[4]}`);
+        const todoInfo = getValuesFromToDo(params[4]);
+        setValuesForInputs(todoInfo);
       } else {
         const projTitle = params[4].getTitle();
         setValueToInputProj(projTitle);
       }
-      modal.style.visibility = 'visible';
     }
   });
 }

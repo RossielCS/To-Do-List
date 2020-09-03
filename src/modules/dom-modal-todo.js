@@ -50,7 +50,7 @@ function createFormToDo(modal, className, inputInfo, radioButtons, projectsList)
   return form;
 }
 
-// main, inputInfo, radioButtons, projectsCont, objMethod
+// Params: main, inputInfo, radioButtons, projectsCont, objMethod
 function createToDoModal(...params) {
   const modal = createModal(params[0], 'New To-Do');
   const form = createFormToDo(modal.children[0], 'input-todo', params[1], params[2], params[5]);

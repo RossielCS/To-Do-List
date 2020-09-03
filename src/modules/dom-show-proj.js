@@ -14,12 +14,6 @@ function projectsList(container, projectsCont, ulClass) {
 
     const projTitle = creator(li, 'h2', 'append');
     projTitle.innerHTML = proj.getTitle();
-    /*
-    const deleteBtn = creator(li, 'button', 'append');
-    deleteBtn.innerHTML = 'DELETE';
-    deleteBtn.setAttribute('class', 'delete-todo');
-    */
-    // addDeleteMethod(deleteBtn);
   });
   return ulCont;
 }
