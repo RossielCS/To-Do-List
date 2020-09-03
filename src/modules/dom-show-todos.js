@@ -37,11 +37,13 @@ function todoList(container, ulClass) {
   const ul = creator(ulCont, 'ul', 'append');
   const allTodos = sortToDos(toDosCont);
   for (let i = 0; i < allTodos.length; i += 1) {
+    const todoValues = allTodos[i].getAllProp();
+
     const li = creator(ul, 'li', 'append');
     li.setAttribute('id-data', `todo-${allTodos[i].getIndex()}`);
 
     const priority = creator(li, 'div', 'append');
-    const priorityText = setPriority(allTodos[i].getPriority());
+    const priorityText = setPriority(todoValues[3]);
     priority.setAttribute('class', `todo-priority ${priorityText.toLowerCase()}`);
     priority.innerHTML = `${priorityText}`;
     addCBToChangeStatus(priority, allTodos[i]);
@@ -53,17 +55,21 @@ function todoList(container, ulClass) {
     const header = creator(todoContent, 'div', 'append');
     header.setAttribute('class', 'title-btn');
 
-    const title = creator(header, 'h3', 'append');
-    title.innerHTML = `${allTodos[i].getTitle()}`;
+    const projTitle = creator(header, 'h3', 'append');
+    projTitle.setAttribute('class', 'proj-title-todo');
+    projTitle.innerHTML = allTodos[i].getProjTitle();
+
+    const title = creator(header, 'h4', 'append');
+    title.innerHTML = `${todoValues[0]}`;
 
     const descr = creator(todoContent, 'p', 'append');
-    descr.innerHTML = `${allTodos[i].getDescr()}`;
+    descr.innerHTML = `${todoValues[1]}`;
 
     const dueDate = creator(todoContent, 'p', 'append');
-    dueDate.innerHTML = `${allTodos[i].getDueDate()}`;
+    dueDate.innerHTML = `${todoValues[2]}`;
 
     const notes = creator(todoContent, 'p', 'append');
-    notes.innerHTML = `${allTodos[i].getNotes()}`;
+    notes.innerHTML = `${todoValues[5]}`;
   }
   return ulCont;
 }

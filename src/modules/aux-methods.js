@@ -1,6 +1,6 @@
 import {
   getValuesFromInput, verifyInput, setValuesForInputs,
-  getValuesFromToDo, updateValues, setValueToInputProj,
+  updateValues, setValueToInputProj,
 } from './input';
 import { toDosCont } from './todo';
 import { projectsCont } from './project';
@@ -78,6 +78,7 @@ function createSubmitCancelBtn(form) {
   cancelBtn.innerHTML = 'CANCEL';
 }
 
+// Params:
 function addCBToSubmit(...params) {
   const btn = params[0].getElementsByTagName('button')[0];
   btn.addEventListener('click', (e) => {
@@ -91,6 +92,7 @@ function addCBToSubmit(...params) {
     } else {
       message.style.display = 'none';
       document.querySelector('.modal').remove();
+      // Refactor
       if (document.getElementById('show-all-proj')) {
         document.getElementById('all-proj').click();
       } else {
@@ -139,6 +141,7 @@ function addCBToEditBtn(button, formClass, inputClass, obj) {
       message.style.display = 'none';
       updateValues(obj.getIndex(), formClass, inputsValues);
       document.querySelector('.modal').remove();
+      // Refactor
       if (document.getElementById('show-all-proj')) {
         document.getElementById('all-proj').click();
       } else {
@@ -168,6 +171,7 @@ function deleteObject(deleteBtn, element, formClass) {
       delete projectsCont[index];
     }
     document.querySelector('.modal').remove();
+    // Refactor
     if (document.getElementById('show-all-proj')) {
       document.getElementById('all-proj').click();
     } else {
@@ -197,7 +201,7 @@ function addEditToContent(...params) {
       }
       btnSubmit.remove();
       if (params[2] === 'todo-form') {
-        const todoInfo = getValuesFromToDo(params[4]);
+        const todoInfo = params[4].getAllProp();
         setValuesForInputs(todoInfo);
       } else {
         const projTitle = params[4].getTitle();

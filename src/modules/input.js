@@ -58,16 +58,6 @@ function setValuesForInputs(todoInfo) {
   }
 }
 
-function getValuesFromToDo(todo) {
-  let todoInfo = [];
-  const methods = [
-    todo.getTitle(), todo.getDescr(), todo.getDueDate(),
-    todo.getPriority(), todo.getProjectIndex(), todo.getNotes(),
-  ];
-  todoInfo = methods.map(x => x);
-  return todoInfo;
-}
-
 function setValueToInputProj(title) {
   const inputs = document.getElementsByClassName('input-proj');
   inputs[0].value = title;
@@ -75,13 +65,8 @@ function setValueToInputProj(title) {
 
 function updateValues(objIndex, formClass, inputsValues) {
   if (formClass === 'todo-form') {
-    toDosCont[objIndex].updateTitle(inputsValues[0]);
-    toDosCont[objIndex].updateDescr(inputsValues[1]);
-    toDosCont[objIndex].updateDueDate(inputsValues[2]);
-    toDosCont[objIndex].updatePriority(inputsValues[3]);
-    toDosCont[objIndex].updateProject(inputsValues[4]);
-    toDosCont[objIndex].updateProjectIndex(inputsValues[5]);
-    toDosCont[objIndex].updateNotes(inputsValues[6]);
+    toDosCont[objIndex].updateAllProp(...inputsValues);
+    console.log(toDosCont[objIndex].getAllProp());
   } else {
     projectsCont[objIndex].updateTitle(inputsValues[0]);
   }
@@ -89,5 +74,5 @@ function updateValues(objIndex, formClass, inputsValues) {
 
 export {
   getValuesFromInput, verifyInput, setValuesForInputs,
-  getValuesFromToDo, updateValues, setValueToInputProj,
+  updateValues, setValueToInputProj,
 };
