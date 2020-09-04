@@ -32,8 +32,8 @@ function verifyInput(inputsValues, projectsCont, modal, objMethod) {
       index = Object.keys(toDosCont).length + 1;
       newObj.updateIndex(index);
       toDosCont[index] = newObj;
-      const savedToDos = JSON.parse(localStorage.getItem('toDosCont')) || [];
-      savedToDos.push(newObj.getAllProp());
+      const savedToDos = JSON.parse(localStorage.getItem('toDosCont')) || {};
+      savedToDos[index] = newObj.getAllProp();
       localStorage.setItem('toDosCont', JSON.stringify(savedToDos));
     }
     modal.style.display = 'none';
@@ -61,6 +61,9 @@ function setValueToInputProj(title) {
 function updateValues(objIndex, formClass, inputsValues) {
   if (formClass === 'todo-form') {
     toDosCont[objIndex].updateAllProp(...inputsValues);
+    const savedToDos = JSON.parse(localStorage.getItem('toDosCont'));
+    savedToDos[objIndex] = toDosCont[objIndex].getAllProp();
+    localStorage.setItem('toDosCont', JSON.stringify(savedToDos));
   } else {
     projectsCont[objIndex].updateTitle(inputsValues[0]);
   }

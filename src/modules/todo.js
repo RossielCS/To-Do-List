@@ -21,7 +21,7 @@ const ToDo = (
     getIndex,
     updateAllProp(...params) {
       [title, descr, dueDate, priority,
-        projName, projIndex, notes, index] = [...params];
+        projName, projIndex, notes] = [...params];
     },
     updateStatus() {
       status = !status;
@@ -37,11 +37,11 @@ const ToDo = (
 const toDosCont = {};
 
 function getToDosStorage(toDosCont) {
-  const savedToDos = JSON.parse(localStorage.getItem('toDosCont')) || [];
-  for (let i = 0; i < savedToDos.length; i += 1) {
-    const todoOne = ToDo(...savedToDos[i]);
-    todoOne.updateIndex(i + 1);
-    toDosCont[i + 1] = todoOne;
+  const savedToDos = JSON.parse(localStorage.getItem('toDosCont')) || {};
+  for (let i = 0; i < Object.keys(savedToDos).length; i += 1) {
+    const todo = ToDo(...savedToDos[i + 1]);
+    todo.updateIndex(i + 1);
+    toDosCont[i + 1] = todo;
   }
   return toDosCont;
 }

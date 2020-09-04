@@ -41,8 +41,7 @@ projectsCont['1'].addToDo(todoThree);
 const navList = document.getElementsByTagName('ul')[0].children;
 
 navList[0].addEventListener('click', () => {
-  const todos = JSON.parse(window.localStorage.getItem('toDosCont'));
-  console.log(Object.keys(todos));
+  window.localStorage.clear();
 });
 
 navList[1].addEventListener('click', () => {
