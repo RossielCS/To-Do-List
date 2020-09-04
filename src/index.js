@@ -1,6 +1,6 @@
 import './assets/stylesheets/style.scss';
 import { creator } from './modules/aux-methods';
-import { Project, projectsCont } from './modules/project';
+import { Project, startProject, projectsCont } from './modules/project';
 import { ToDo, toDosCont, getToDosStorage } from './modules/todo';
 import { createNav, liNamesList } from './modules/dom-navbar';
 import createProjectModal from './modules/dom-modal-proj';
@@ -18,10 +18,7 @@ createNav(main, liNamesList);
 const displaySection = creator(main, 'article', 'append');
 displaySection.setAttribute('id', 'sect-selected-todo');
 
-const defaultProject = Project('Project Default');
-defaultProject.updateIndex('0');
-projectsCont['0'] = defaultProject;
-
+startProject(projectsCont);
 getToDosStorage(toDosCont);
 
 /*
