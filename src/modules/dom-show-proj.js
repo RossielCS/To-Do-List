@@ -16,11 +16,24 @@ function projectsList(container, projectsCont, ulClass) {
     const projTitle = creator(li, 'h2', 'append');
     projTitle.innerHTML = proj.getTitle();
 
-    const todo = Object.values(toDosCont).filter(x => x.getProjIndex() === proj.getIndex());
-    if (todo.length) {
-      const todoTitle = creator(li, 'h3', 'append');
-      todoTitle.innerHTML = todo[0].getTitle();
+    const allTodos = Object.values(toDosCont);
+    if (allTodos.length) {
+      allTodos.forEach(todo => {
+        if (todo.getProjIndex() === proj.getIndex()) {
+          const todoTitle = creator(li, 'h3', 'append');
+          todoTitle.innerHTML = todo.getTitle();
+        }
+      });
     }
+    /*
+    const todo = Object.values(JSON.parse(localStorage.getItem('toDosCont')));
+    todo.forEach(obj => {
+      if (obj[5] === proj.getIndex()) {
+        const todoTitle = creator(li, 'h3', 'append');
+        todoTitle.innerHTML = `${obj[0]}`;
+      }
+    });
+    */
   });
   return ulCont;
 }

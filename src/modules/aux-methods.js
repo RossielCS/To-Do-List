@@ -170,12 +170,23 @@ function addCBToDeleteBtn(deleteBtn, element, formClass) {
     li.remove();
     if (formClass === 'todo-form') {
       delete toDosCont[index];
+      const savedToDo = JSON.parse(localStorage.getItem('toDosCont'));
+      delete savedToDo[index];
+      localStorage.setItem('toDosCont', JSON.stringify(savedToDo));
     } else {
-      const projAllTodos = Object.values(toDosCont).filter(x => x.getProjIndex() === index);
-      projAllTodos.forEach(x => {
-        delete toDosCont[x.getIndex()];
+      const savedToDos = JSON.parse(localStorage.getItem('toDosCont'));
+      const savedProjects = JSON.parse(localStorage.getItem('projectsCont'));
+      Object.values(toDosCont).forEach(obj => {
+        if (obj.getProjIndex() === projectsCont[index].getIndex()) {
+          delete toDosCont[obj.getIndex()];
+          delete savedToDos[obj.getIndex()];
+        }
       });
       delete projectsCont[index];
+      delete savedProjects[index];
+
+      localStorage.setItem('toDosCont', JSON.stringify(savedToDos));
+      localStorage.setItem('projectsCont', JSON.stringify(savedProjects));
     }
     document.querySelector('.modal').remove();
     reloadPage();
