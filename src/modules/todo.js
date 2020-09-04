@@ -4,7 +4,7 @@ const ToDo = (
 ) => {
   let status = false;
   let index = '';
-  const getAllProp = () => [title, descr, dueDate, priority, projIndex, notes];
+  const getAllProp = () => [title, descr, dueDate, priority, projName, projIndex, notes, index];
   const getProjTitle = () => projName;
   const getProjIndex = () => projIndex;
   const getTitle = () => title;
@@ -21,7 +21,7 @@ const ToDo = (
     getIndex,
     updateAllProp(...params) {
       [title, descr, dueDate, priority,
-        projName, projIndex, notes] = [...params];
+        projName, projIndex, notes, index] = [...params];
     },
     updateStatus() {
       status = !status;
@@ -36,14 +36,14 @@ const ToDo = (
 
 const toDosCont = {};
 
-const todoOne = ToDo('First TO-DO', 'This is a test.', '2020-10-15', '01', 'Project Default', '0', 'These are all the notes.');
-todoOne.updateIndex('1');
-toDosCont['1'] = todoOne;
+function getToDosStorage(toDosCont) {
+  const savedToDos = JSON.parse(localStorage.getItem('toDosCont')) || [];
+  for (let i = 0; i < savedToDos.length; i += 1) {
+    const todoOne = ToDo(...savedToDos[i]);
+    todoOne.updateIndex(i + 1);
+    toDosCont[i + 1] = todoOne;
+  }
+  return toDosCont;
+}
 
-const todoTwo = ToDo('Second TO-DO', 'This is a test.', '2020-11-21', '04', 'New Project', '2', 'These are all the notes.');
-todoTwo.updateIndex('2');
-toDosCont['2'] = todoTwo;
-
-window.localStorage.setItem('toDosCont', JSON.stringify(toDosCont));
-
-export { ToDo, toDosCont };
+export { ToDo, toDosCont, getToDosStorage };

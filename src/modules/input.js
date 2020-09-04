@@ -26,12 +26,16 @@ function verifyInput(inputsValues, projectsCont, modal, objMethod) {
     const newObj = objMethod(...inputsValues);
     if (objMethod === Project) {
       index = Object.keys(projectsCont).length + 1;
+      newObj.updateIndex(index);
       projectsCont[index] = newObj;
     } else {
       index = Object.keys(toDosCont).length + 1;
+      newObj.updateIndex(index);
       toDosCont[index] = newObj;
+      const savedToDos = JSON.parse(localStorage.getItem('toDosCont')) || [];
+      savedToDos.push(newObj.getAllProp());
+      localStorage.setItem('toDosCont', JSON.stringify(savedToDos));
     }
-    newObj.updateIndex(index);
     modal.style.display = 'none';
     return true;
   }
@@ -40,21 +44,12 @@ function verifyInput(inputsValues, projectsCont, modal, objMethod) {
 
 function setValuesForInputs(todoInfo) {
   const inputs = document.getElementsByClassName('input-todo');
-  let j = 0;
-  for (let i = 0; i < inputs.length; i += 1) {
-    if (i === 3) {
-      while (j < 7) {
-        inputs[j].checked = inputs[j].value === todoInfo[3];
-        j += 1;
-      }
-      i += 3;
-      j = 3;
-    } else if (inputs[i].type === 'select-one') {
-      inputs[i].options.selectedIndex = todoInfo[j];
-    } else {
-      inputs[i].value = todoInfo[j];
-    }
-    j += 1;
+  [inputs[0].value, inputs[1].value, inputs[2].value,
+    inputs[7].options.selectedIndex, inputs[8].value] = [
+    todoInfo[0], todoInfo[1], todoInfo[2],
+    todoInfo[5], todoInfo[6]];
+  for (let i = 3; i < 7; i += 1) {
+    inputs[i].checked = inputs[i].value === todoInfo[3];
   }
 }
 

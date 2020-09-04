@@ -69,7 +69,7 @@ function todoList(container, ulClass) {
     dueDate.innerHTML = `${todoValues[2]}`;
 
     const notes = creator(todoContent, 'p', 'append');
-    notes.innerHTML = `${todoValues[5]}`;
+    notes.innerHTML = `${todoValues[6]}`;
   }
   return ulCont;
 }

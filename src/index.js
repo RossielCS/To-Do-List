@@ -1,12 +1,14 @@
 import './assets/stylesheets/style.scss';
 import { creator } from './modules/aux-methods';
 import { Project, projectsCont } from './modules/project';
-import { ToDo } from './modules/todo';
+import { ToDo, toDosCont, getToDosStorage } from './modules/todo';
 import { createNav, liNamesList } from './modules/dom-navbar';
 import createProjectModal from './modules/dom-modal-proj';
 import { createToDoModal, inputInfo, radioButtons } from './modules/dom-modal-todo';
 import createShowToDos from './modules/dom-show-todos';
 import createShowProj from './modules/dom-show-proj';
+
+// window.localStorage.clear();
 
 const content = document.getElementById('content');
 
@@ -19,6 +21,9 @@ displaySection.setAttribute('id', 'sect-selected-todo');
 const defaultProject = Project('Project Default');
 defaultProject.updateIndex('0');
 projectsCont['0'] = defaultProject;
+
+getToDosStorage(toDosCont);
+
 /*
 projectsCont['1'] = Project('Project Two');
 
@@ -32,6 +37,7 @@ const todoThree = ToDo('Third TO-DO', 'This is a test.',
 '2020-11-25', '03', 'Project Two', '1', 'These are all the notes.');
 projectsCont['1'].addToDo(todoThree);
 */
+
 const navList = document.getElementsByTagName('ul')[0].children;
 
 navList[0].addEventListener('click', () => {
