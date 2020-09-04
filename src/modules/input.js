@@ -25,7 +25,8 @@ function verifyInput(inputsValues, projectsCont, modal, objMethod) {
   if (inputsValues) {
     const newObj = objMethod(...inputsValues);
     if (objMethod === Project) {
-      index = Object.keys(projectsCont).length + 1;
+      const num = Object.keys(projectsCont)[Object.keys(projectsCont).length - 1];
+      index = parseInt(num, 10) + 1;
       newObj.updateIndex(index);
       projectsCont[index] = newObj;
       const savedProj = JSON.parse(localStorage.getItem('projectsCont'));
@@ -68,12 +69,10 @@ function updateValues(objIndex, formClass, inputsValues) {
     savedToDos[objIndex] = toDosCont[objIndex].getAllProp();
     localStorage.setItem('toDosCont', JSON.stringify(savedToDos));
   } else {
-    console.log(inputsValues);
-    /* projectsCont[objIndex].updateTitle(inputsValues[0]);
-    toDosCont[objIndex].updateAllProp(...inputsValues);
-    const savedToDos = JSON.parse(localStorage.getItem('toDosCont'));
-    savedToDos[objIndex] = toDosCont[objIndex].getAllProp();
-    localStorage.setItem('toDosCont', JSON.stringify(savedToDos)); */
+    projectsCont[objIndex].updateTitle(inputsValues[0]);
+    const savedproj = JSON.parse(localStorage.getItem('projectsCont'));
+    savedproj[objIndex] = projectsCont[objIndex].getAllProp();
+    localStorage.setItem('projectsCont', JSON.stringify(savedproj));
   }
 }
 

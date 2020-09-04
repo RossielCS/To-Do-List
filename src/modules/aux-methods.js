@@ -197,7 +197,7 @@ function addEditingToElement(...params) {
       document.getElementById(`${params[1]}`).click();
       const btnSubmit = document.getElementsByClassName('btn-submit')[0];
       createEditBtn(btnSubmit, `${params[2]}`, `${params[3]}`, params[4]);
-      if (params[4].getIndex() !== '0') {
+      if (params[4].getIndex() !== 0) {
         const deleteBtn = createDeleteBtn(btnSubmit, `${params[2]}`);
         addCBToDeleteBtn(deleteBtn, e.target, params[2]);
         const warningMessage = document.getElementById('delete-warning');

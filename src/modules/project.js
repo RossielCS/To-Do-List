@@ -23,15 +23,16 @@ const projectsCont = {};
 
 function createDefaultProject() {
   const defaultProject = Project('Project Default');
-  defaultProject.updateIndex('0');
-  projectsCont['0'] = defaultProject.getAllProp();
+  defaultProject.updateIndex(0);
+  projectsCont[0] = defaultProject.getAllProp();
   localStorage.setItem('projectsCont', JSON.stringify(projectsCont));
 }
 
 function getProjStorage(projectsCont) {
   const savedProj = JSON.parse(localStorage.getItem('projectsCont'));
+  console.log(savedProj);
   for (let i = 0; i < Object.keys(savedProj).length; i += 1) {
-    const proj = Project(...savedProj[i][0]);
+    const proj = Project(...savedProj[i]);
     proj.updateIndex(i);
     projectsCont[i] = proj;
   }
@@ -39,7 +40,7 @@ function getProjStorage(projectsCont) {
 }
 
 function startProject(projectsCont) {
-  createDefaultProject();
+  if (!JSON.parse(localStorage.getItem('projectsCont'))) createDefaultProject();
   getProjStorage(projectsCont);
 }
 
