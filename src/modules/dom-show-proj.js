@@ -25,15 +25,6 @@ function projectsList(container, projectsCont, ulClass) {
         }
       });
     }
-    /*
-    const todo = Object.values(JSON.parse(localStorage.getItem('toDosCont')));
-    todo.forEach(obj => {
-      if (obj[5] === proj.getIndex()) {
-        const todoTitle = creator(li, 'h3', 'append');
-        todoTitle.innerHTML = `${obj[0]}`;
-      }
-    });
-    */
   });
   return ulCont;
 }

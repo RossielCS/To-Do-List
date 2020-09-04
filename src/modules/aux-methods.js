@@ -41,6 +41,7 @@ function addAttributestoInput(...params) {
     params[0].setAttribute('name', `${params[1]}`);
   }
   if (params[1] === 'notes') params[0].maxLength = '200';
+  if (params[2] === 'date') params[0].min = (new Date()).toISOString().substring(0, 10);
 }
 
 function createFormEle(form, className, inputInfo, i, projectsList) {

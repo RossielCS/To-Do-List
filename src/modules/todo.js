@@ -36,10 +36,12 @@ const ToDo = (
 
 const toDosCont = {};
 /*
-const todoOne = ToDo('First TO-DO', 'This is a test.', '2020-10-15', '01', 'Project Default', 0, 'These are all the notes.');
+const todoOne = ToDo('First TO-DO', 'This is a test.', '2020-10-15',
+'01', 'Project Default', 0, 'These are all the notes.');
 toDosCont[1] = todoOne;
 todoOne.updateIndex(1);
-const todoTwo = ToDo('Second TO-DO', 'This is a test.', '2020-11-21', '04', 'Project Two', 1, 'These are all the notes.');
+const todoTwo = ToDo('Second TO-DO', 'This is a test.', '2020-11-21',
+'04', 'Project Two', 1, 'These are all the notes.');
 todoTwo.updateIndex(2);
 toDosCont[2] = todoTwo;
 
