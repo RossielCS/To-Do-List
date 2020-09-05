@@ -30,7 +30,7 @@
 
     h3,
     h4 {
-      margin-bottom: 5vh;
+      margin-bottom: 20px;
       text-align: center;
     }
 
@@ -47,11 +47,13 @@
         margin-bottom: 10px;
       }
 
-      p {
+      #delete-warning {
+        font-weight: 600;
         color: $cancel;
       }
 
-      input {
+      input,
+      select {
         width: 100%;
         height: 30px;
         margin-bottom: 10px;
@@ -75,6 +77,8 @@
         font-family: 'Quicksand', sans-serif;
         font-size: 16px;
         font-weight: 600;
+
+        @include flex(row, center, center);
 
         &:hover {
           cursor: pointer;
@@ -113,12 +117,18 @@
       .radio-container {
         @include flex(row, flex-start, center);
 
-        & > * {
-          min-width: 20px;
-          margin-right: 5px;
+        div {
+          line-height: 15px;
+          margin-right: 15px;
 
-          & > * {
-            @include flex(column, flex-start, center);
+          input {
+            height: 15px;
+            width: 15px;
+            vertical-align: text-top;
+          }
+
+          label {
+            font-size: 14px;
           }
         }
       }

@@ -49,4 +49,4 @@ navList[3].addEventListener('click', () => {
   createShowToDos(displaySection, projectsCont);
 });
 
-navList[2].click();
+navList[3].click();

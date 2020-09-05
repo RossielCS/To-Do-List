@@ -15,13 +15,13 @@ function sortToDos(toDosCont) {
 function setPriority(priority) {
   switch (priority) {
     case '01':
-      return 'Critical';
+      return 'CRITICAL';
     case '02':
-      return 'High';
+      return 'HIGH';
     case '03':
-      return 'Medium';
+      return 'MEDIUM';
     default:
-      return 'Low';
+      return 'LOW';
   }
 }
 
@@ -45,7 +45,8 @@ function todoList(container, ulClass) {
     const priority = creator(li, 'div', 'append');
     const priorityText = setPriority(todoValues[3]);
     priority.setAttribute('class', `todo-priority ${priorityText.toLowerCase()}`);
-    priority.innerHTML = `${priorityText}`;
+    const priorityPara = creator(priority, 'p', 'append');
+    priorityPara.innerHTML = `${priorityText}`;
     addCBToChangeStatus(priority, allTodos[i]);
 
     const todoContent = creator(li, 'div', 'append');
