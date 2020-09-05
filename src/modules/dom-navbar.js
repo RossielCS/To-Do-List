@@ -1,8 +1,11 @@
 import { creator } from './aux-methods';
-import * as images from '../assets/images';
+import addProj from '../assets/images/add_proj.png';
+import addToDo from '../assets/images/add_todo.png';
+import allProj from '../assets/images/all_proj.png';
+import allToDos from '../assets/images/all_todos.png';
 
 const liNames = [
-  'Add a Project', ' Add a To-Do', 'All Projects', 'All To-Dos',
+  'New Project', 'New To-Do', 'All Projects', 'All To-Dos',
 ];
 
 const liIds = [
@@ -10,7 +13,7 @@ const liIds = [
 ];
 
 const liIcons = [
-  images.add_proj, images.add_todo, images.all_proj, images.all_todos,
+  addProj, addToDo, allProj, allToDos,
 ];
 
 /*

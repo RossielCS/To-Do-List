@@ -1,0 +1,107 @@
+@import 'mixins';
+@import 'variables';
+
+#sect-selected-todo {
+  width: 75%;
+  background-color: rgb(242, 247, 253);
+
+  #show-all-todo,
+  #show-all-proj {
+    height: 100%;
+
+    h1 {
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    .show-ul-cont {
+      ul {
+        margin: 20px;
+
+        li {
+          padding: 20px 20px;
+          margin-bottom: 2vh;
+          display: flex;
+          // border: 1px solid red;
+          border-radius: 10px;
+          box-shadow: 5px 5px 8px -2px rgba(63, 63, 63, 0.15);
+          background-color: rgb(255, 255, 255);
+
+          .todo-priority {
+            width: 15%;
+            margin-right: 20px;
+            text-align: center;
+            line-height: 70px;
+            border-radius: 100%;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          .todo-content {
+            width: 85%;
+            line-height: 25px;
+
+            .title-btn {
+              // background-color: $primary-color-light;
+
+              h3 {
+                font-size: 22px;
+                font-weight: 700;
+              }
+
+              h4 {
+                font-size: 18px;
+                font-weight: 600;
+              }
+            }
+
+            p {
+              margin-left: 15px;
+              font-size: 15px;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          .critical {
+            background-color: $critical;
+          }
+
+          .high {
+            background-color: $high;
+          }
+
+          .medium {
+            background-color: $medium;
+          }
+
+          .low {
+            background-color: $low;
+          }
+        }
+      }
+
+      .title-btn {
+        @include flex(column, center, flex-start);
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  #show-all-todo {
+    padding: 10px;
+    // background-color: rgb(114, 168, 137);
+  }
+
+  #show-all-proj {
+    background-color: rgb(118, 114, 168);
+  }
+}

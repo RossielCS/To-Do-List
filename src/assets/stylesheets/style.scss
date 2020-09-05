@@ -2,6 +2,7 @@
 @import 'variables';
 @import 'reset';
 @import 'navbar';
+@import 'todos_proj';
 
 #content {
   margin: auto;
@@ -18,85 +19,6 @@ main {
 
   & > * {
     height: 100%;
-  }
-}
-
-#sect-selected-todo {
-  width: 75%;
-
-  #show-all-todo,
-  #show-all-proj {
-    height: 100%;
-
-    h1 {
-      height: 50px;
-      text-align: center;
-      line-height: 50px;
-    }
-
-    .show-ul-cont {
-      ul {
-        margin: 20px;
-
-        li {
-          padding: 10px 20px;
-          display: flex;
-
-          .todo-priority {
-            width: 15%;
-            margin-right: 20px;
-            text-align: center;
-            line-height: 70px;
-            border-radius: 100%;
-
-            &:hover {
-              cursor: pointer;
-            }
-          }
-
-          .todo-content {
-            width: 85%;
-
-            &:hover {
-              cursor: pointer;
-            }
-          }
-
-          .critical {
-            background-color: $critical;
-          }
-
-          .high {
-            background-color: $high;
-          }
-
-          .medium {
-            background-color: $medium;
-          }
-
-          .low {
-            background-color: $low;
-          }
-        }
-      }
-
-      .title-btn {
-        @include flex(column, center, flex-start);
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-  }
-
-  #show-all-todo {
-    padding: 10px;
-    // background-color: rgb(114, 168, 137);
-  }
-
-  #show-all-proj {
-    background-color: rgb(118, 114, 168);
   }
 }
 
