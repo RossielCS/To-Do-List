@@ -1,0 +1,22 @@
+nav {
+  width: 25%;
+  min-width: 170px;
+
+  ul {
+    height: 100%;
+    padding: 15vh 2vh;
+    background-color: rgb(45, 99, 160);
+
+    @include flex(column, flex-start, flex-start);
+
+    li {
+      margin-top: 3vh;
+      cursor: pointer;
+    }
+
+    #add-proj {
+      div {
+      }
+    }
+  }
+}

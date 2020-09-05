@@ -1,11 +1,13 @@
 @import 'mixins';
 @import 'variables';
 @import 'reset';
+@import 'navbar';
 
 #content {
   margin: auto;
   display: grid;
   grid-template-columns: 1fr minmax(768px, 1920px) 1fr;
+  font-family: 'Quicksand', sans-serif;
 }
 
 main {
@@ -16,24 +18,6 @@ main {
 
   & > * {
     height: 100%;
-  }
-}
-
-nav {
-  width: 25%;
-  min-width: 170px;
-
-  ul {
-    height: 100%;
-    padding: 15vh 2vh;
-    background-color: sienna;
-
-    @include flex(column, flex-start, flex-start);
-
-    li {
-      margin-top: 3vh;
-      cursor: pointer;
-    }
   }
 }
 
