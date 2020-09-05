@@ -76,6 +76,7 @@ function createSubmitCancelBtn(form) {
 
   const cancelBtn = creator(form, 'button', 'append');
   cancelBtn.setAttribute('type', 'button');
+  cancelBtn.setAttribute('class', 'btn-cancel');
   cancelBtn.innerHTML = 'CANCEL';
 }
 
@@ -158,6 +159,7 @@ function addCBToEditBtn(button, formClass, inputClass, obj) {
 function createEditBtn(button, formClass, inputClass, obj) {
   const form = document.getElementById(`${formClass}`);
   const editBtn = creator(form, 'button', button);
+  editBtn.setAttribute('class', 'btn-edit');
   editBtn.innerHTML = 'EDIT';
   addCBToEditBtn(editBtn, formClass, inputClass, obj);
   return editBtn;

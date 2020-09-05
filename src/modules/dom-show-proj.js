@@ -21,6 +21,7 @@ function projectsList(container, projectsCont, ulClass) {
       allTodos.forEach(todo => {
         if (todo.getProjIndex() === proj.getIndex()) {
           const todoTitle = creator(li, 'h3', 'append');
+          todoTitle.setAttribute('class', 'proj-list-todo');
           todoTitle.innerHTML = todo.getTitle();
         }
       });

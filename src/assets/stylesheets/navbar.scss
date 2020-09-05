@@ -10,8 +10,8 @@ nav {
     @include flex(column, flex-start, flex-start);
 
     li {
-      padding-top: 2vh;
-      padding-bottom: 2vh;
+      padding-top: 15px;
+      padding-bottom: 15px;
       width: 100%;
       cursor: pointer;
 

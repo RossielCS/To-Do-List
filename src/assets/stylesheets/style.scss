@@ -3,6 +3,7 @@
 @import 'reset';
 @import 'navbar';
 @import 'todos_proj';
+@import 'modal';
 
 #content {
   margin: auto;
@@ -19,79 +20,5 @@ main {
 
   & > * {
     height: 100%;
-  }
-}
-
-.modal {
-  position: absolute;
-  display: none;
-  z-index: 1;
-  width: 100vw;
-  height: 100vh;
-  backdrop-filter: blur(4px);
-
-  .modal-content {
-    position: fixed;
-    padding: 5vh;
-    width: 50vw;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    height: max-content;
-    animation-name: animatetop;
-    animation-duration: 0.6s;
-    background-color: #fff;
-
-    .input-msg-required,
-    #delete-warning {
-      display: none;
-    }
-
-    h3,
-    h4 {
-      margin-bottom: 5vh;
-      text-align: center;
-    }
-
-    form {
-      @include flex(column, space-between, flex-start);
-
-      & > * {
-        margin-bottom: 10px;
-      }
-
-      input {
-        width: 100%;
-      }
-
-      input[type='textarea'] {
-        overflow: auto;
-      }
-
-      .radio-container {
-        @include flex(row, flex-start, center);
-
-        & > * {
-          min-width: 20px;
-          margin-right: 5px;
-
-          & > * {
-            @include flex(column, flex-start, center);
-          }
-        }
-      }
-    }
-  }
-
-  @keyframes animatetop {
-    from {
-      top: -300px;
-      opacity: 0;
-    }
-
-    to {
-      top: 50%;
-      opacity: 1;
-    }
   }
 }

@@ -76,7 +76,7 @@ function todoList(container, ulClass) {
 
 function createShowToDos(parent) {
   removeSection();
-  const container = createShowContainer(parent, 'show-all-todo', 'All TO-DOs');
+  const container = createShowContainer(parent, 'show-all-todo', 'All To-Dos');
   todoList(container, 'show-ul-cont');
   return container;
 }

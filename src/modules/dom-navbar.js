@@ -16,13 +16,6 @@ const liIcons = [
   addProj, addToDo, allProj, allToDos,
 ];
 
-/*
-function createBg(menuCell, index, saladsImages) {
-  menuCell.setAttribute('class', 'menu-salad-bg');
-  menuCell.style.backgroundImage = `url('${saladsImages}')`;
-}
-*/
-
 function createNav(main, liIds, liNames, liIcons) {
   const navbar = creator(main, 'nav', 'append');
   const navList = creator(navbar, 'ul', 'append');
