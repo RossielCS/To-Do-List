@@ -209,6 +209,7 @@ function addEditingToElement(...params) {
   params[0].addEventListener('click', (e) => {
     if (!document.querySelector('.modal')) {
       document.getElementById(`${params[1]}`).click();
+      const header = document.querySelector('.modal-content').children[0];
       const btnSubmit = document.getElementsByClassName('btn-submit')[0];
       createEditBtn(btnSubmit, `${params[2]}`, `${params[3]}`, params[4]);
       if (params[4].getIndex() !== 0) {
@@ -221,9 +222,11 @@ function addEditingToElement(...params) {
       if (params[2] === 'todo-form') {
         const todoInfo = params[4].getAllProp();
         setValuesForInputs(todoInfo);
+        header.innerHTML = 'Edit To-Do';
       } else {
         const projTitle = params[4].getTitle();
         setValueToInputProj(projTitle);
+        header.innerHTML = 'Edit Project';
       }
     }
   });

@@ -9,7 +9,7 @@ function projectsList(container, projectsCont, ulClass) {
   const ul = creator(ulCont, 'ul', 'append');
   Object.values(projectsCont).forEach(proj => {
     const li = creator(ul, 'li', 'append');
-    li.setAttribute('class', 'title-btn');
+    li.setAttribute('class', 'project-content');
     addEditingToElement(li, 'add-proj', 'proj-form', 'input-proj', proj);
     li.setAttribute('id-data', `proj-${proj.getIndex()}`);
 

@@ -4,6 +4,7 @@
 .title-btn {
   line-height: 25px;
 
+  @include pointer;
   @include flex(column, center, flex-start);
 
   h2 {
@@ -14,9 +15,22 @@
   .proj-list-todo {
     margin-left: 20px;
   }
+}
 
-  &:hover {
-    cursor: pointer;
+.project-content {
+  @include flex(column, center, flex-start);
+  @include section;
+  @include pointer;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  h3 {
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: 500;
   }
 }
 
@@ -55,6 +69,8 @@
             background-repeat: no-repeat;
             background-position: center;
 
+            @include pointer;
+
             p {
               position: absolute;
               left: 50%;
@@ -63,20 +79,11 @@
               font-size: 12px;
               font-weight: 600;
             }
-
-            &:hover {
-              cursor: pointer;
-            }
           }
 
           .todo-content {
-            width: 100%;
-            padding: 20px 20px;
-            line-height: 25px;
-            border: 1px solid rgba(204, 204, 204, 0.2);
-            border-radius: 10px;
-            box-shadow: 5px 5px 8px -2px rgba(63, 63, 63, 0.15);
-            background-color: rgb(255, 255, 255);
+            @include section;
+            @include pointer;
 
             .title-btn {
               h3 {
@@ -93,10 +100,6 @@
             p {
               margin-left: 15px;
               font-size: 15px;
-            }
-
-            &:hover {
-              cursor: pointer;
             }
           }
         }

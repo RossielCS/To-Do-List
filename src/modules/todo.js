@@ -69,8 +69,8 @@ function getToDosStorage(toDosCont) {
 }
 
 function startToDo(toDosCont) {
-  const savedToDos = Object.values(JSON.parse(localStorage.getItem('toDosCont'))).length;
-  if (!savedToDos) createDefaultToDo();
+  const savedToDos = JSON.parse(localStorage.getItem('toDosCont')) || {};
+  if (!Object.values(savedToDos).length) createDefaultToDo();
   getToDosStorage(toDosCont);
 }
 
