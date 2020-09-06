@@ -1,0 +1,109 @@
+@import 'mixins';
+@import 'variables';
+
+.title-btn {
+  line-height: 25px;
+
+  @include pointer;
+  @include flex(column, center, flex-start);
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .proj-list-todo {
+    margin-left: 20px;
+  }
+}
+
+.project-content {
+  @include flex(column, center, flex-start);
+  @include section;
+  @include pointer;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  h3 {
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+#sect-selected-todo {
+  width: 100%;
+  background-color: rgb(242, 247, 253);
+
+  #show-all-todo,
+  #show-all-proj {
+    height: 100%;
+
+    h1 {
+      height: 80px;
+      text-align: center;
+      line-height: 80px;
+      font-size: 30px;
+      font-weight: 700;
+      background-color: #fff;
+      border-bottom: 1px solid rgba(204, 204, 204, 0.2);
+      box-shadow: 1px 1px 8px -2px rgba(63, 63, 63, 0.15);
+    }
+
+    .show-ul-cont {
+      ul {
+        margin: 40px;
+
+        li {
+          margin-bottom: 2vh;
+          display: flex;
+
+          .todo-priority {
+            position: relative;
+            width: 90px;
+            margin-right: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            @include pointer;
+
+            p {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              font-size: 12px;
+              font-weight: 600;
+            }
+          }
+
+          .todo-content {
+            @include section;
+            @include pointer;
+
+            .title-btn {
+              h3 {
+                font-size: 22px;
+                font-weight: 700;
+              }
+
+              h4 {
+                font-size: 18px;
+                font-weight: 600;
+              }
+            }
+
+            p {
+              margin-left: 15px;
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
