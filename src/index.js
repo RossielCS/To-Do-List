@@ -7,7 +7,7 @@ import {
 } from './modules/dom-navbar';
 import createProjectModal from './modules/dom-modal-proj';
 import { createToDoModal, inputInfo, radioButtons } from './modules/dom-modal-todo';
-import createShowToDos from './modules/dom-show-todos';
+import { createShowToDos, priorityImgs } from './modules/dom-show-todos';
 import createShowProj from './modules/dom-show-proj';
 
 // window.localStorage.clear();
@@ -46,7 +46,7 @@ navList[2].addEventListener('click', () => {
 });
 
 navList[3].addEventListener('click', () => {
-  createShowToDos(displaySection, projectsCont);
+  createShowToDos(displaySection, priorityImgs);
 });
 
 navList[3].click();

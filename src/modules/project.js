@@ -24,10 +24,6 @@ function createDefaultProject() {
   const defaultProject = Project('Project Default');
   defaultProject.updateIndex(0);
   projectsCont[0] = defaultProject.getAllProp();
-
-  const secondProject = Project('Project Two');
-  secondProject.updateIndex(1);
-  projectsCont[1] = secondProject.getAllProp();
   localStorage.setItem('projectsCont', JSON.stringify(projectsCont));
 }
 

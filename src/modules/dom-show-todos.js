@@ -2,6 +2,15 @@ import {
   creator, createShowContainer, removeSection, addEditingToElement,
 } from './aux-methods';
 import { toDosCont } from './todo';
+import checked from '../assets/images/checked.png';
+import critical from '../assets/images/critical.png';
+import high from '../assets/images/high.png';
+import medium from '../assets/images/medium.png';
+import low from '../assets/images/low.png';
+
+const priorityImgs = [
+  checked, critical, high, medium, low,
+];
 
 function sortToDos(toDosCont) {
   const allTodos = [];
@@ -12,26 +21,40 @@ function sortToDos(toDosCont) {
   return allTodos;
 }
 
-function setPriority(priority) {
+function setPriority(priority, priorityImgs) {
   switch (priority) {
     case '01':
-      return 'CRITICAL';
+      return ['CRITICAL', priorityImgs[1]];
     case '02':
-      return 'HIGH';
+      return ['HIGH', priorityImgs[2]];
     case '03':
-      return 'MEDIUM';
+      return ['MEDIUM', priorityImgs[3]];
     default:
-      return 'LOW';
+      return ['LOW', priorityImgs[4]];
   }
 }
 
-function addCBToChangeStatus(element, todo) {
-  element.addEventListener('click', () => {
-    todo.updateStatus();
+function addCBToChangeStatus(element, todo, priorityImgs, priorityIndex) {
+  element.addEventListener('click', (e) => {
+    const status = todo.updateStatus();
+    const target = e.target.closest('.todo-priority');
+    const content = target.closest('li').children[1];
+    const savedTodos = JSON.parse(localStorage.getItem('toDosCont'));
+    savedTodos[todo.getIndex()] = todo.getAllProp();
+    localStorage.setItem('toDosCont', JSON.stringify(savedTodos));
+    if (status) {
+      target.style.backgroundImage = `url('${priorityImgs[0]}')`;
+      target.getElementsByTagName('p')[0].style.visibility = 'hidden';
+      content.style.backgroundColor = '#efefef';
+    } else {
+      target.style.backgroundImage = `url('${setPriority(priorityIndex, priorityImgs)[1]}')`;
+      target.getElementsByTagName('p')[0].style.visibility = 'visible';
+      content.style.backgroundColor = '#fff';
+    }
   });
 }
 
-function todoList(container, ulClass) {
+function todoList(container, ulClass, priorityImgs) {
   const ulCont = creator(container, 'div', 'append');
   ulCont.setAttribute('class', `${ulClass}`);
   const ul = creator(ulCont, 'ul', 'append');
@@ -43,11 +66,11 @@ function todoList(container, ulClass) {
     li.setAttribute('id-data', `todo-${allTodos[i].getIndex()}`);
 
     const priority = creator(li, 'div', 'append');
-    const priorityText = setPriority(todoValues[3]);
+    const priorityText = setPriority(todoValues[3], priorityImgs)[0];
     priority.setAttribute('class', `todo-priority ${priorityText.toLowerCase()}`);
     const priorityPara = creator(priority, 'p', 'append');
     priorityPara.innerHTML = `${priorityText}`;
-    addCBToChangeStatus(priority, allTodos[i]);
+    addCBToChangeStatus(priority, allTodos[i], priorityImgs, todoValues[3]);
 
     const todoContent = creator(li, 'div', 'append');
     todoContent.setAttribute('class', 'todo-content');
@@ -71,15 +94,23 @@ function todoList(container, ulClass) {
 
     const notes = creator(todoContent, 'p', 'append');
     notes.innerHTML = `${todoValues[6]}`;
+
+    if (!todoValues[8]) {
+      priority.style.backgroundImage = `url('${setPriority(todoValues[3], priorityImgs)[1]}')`;
+    } else {
+      priority.style.backgroundImage = `url('${priorityImgs[0]}')`;
+      priorityPara.style.visibility = 'hidden';
+      todoContent.style.backgroundColor = '#efefef';
+    }
   }
   return ulCont;
 }
 
-function createShowToDos(parent) {
+function createShowToDos(parent, priorityImgs) {
   removeSection();
   const container = createShowContainer(parent, 'show-all-todo', 'All To-Dos');
-  todoList(container, 'show-ul-cont');
+  todoList(container, 'show-ul-cont', priorityImgs);
   return container;
 }
 
-export default createShowToDos;
+export { createShowToDos, priorityImgs };
