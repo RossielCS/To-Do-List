@@ -13,7 +13,7 @@ Here I applied DOM manipulation by dynamically rendering the website using JavaS
 
 ## Live Demo
 
-You can try it [here](https://raw.githack.com/RossielCS/To-Do-List/tree/feature_todo_list/dist).
+You can try it [here](https://rawcdn.githack.com/RossielCS/To-Do-List/23bcec04a4e69e833b7321d29fc7c47b44b5014d/dist/index.html).
 
 ## :hammer:  Built With
 
