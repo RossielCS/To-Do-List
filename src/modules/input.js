@@ -73,6 +73,16 @@ function updateValues(objIndex, formClass, inputsValues) {
     const savedproj = JSON.parse(localStorage.getItem('projectsCont'));
     savedproj[objIndex] = projectsCont[objIndex].getAllProp();
     localStorage.setItem('projectsCont', JSON.stringify(savedproj));
+
+    const savedToDos = JSON.parse(localStorage.getItem('toDosCont'));
+    Object.values(toDosCont).forEach(x => {
+      if (x.getProjIndex() === objIndex) {
+        x.updateProjTitle(inputsValues[0]);
+        // eslint-disable-next-line prefer-destructuring
+        savedToDos[x.getIndex()][4] = inputsValues[0];
+      }
+    });
+    localStorage.setItem('toDosCont', JSON.stringify(savedToDos));
   }
 }
 

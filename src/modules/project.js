@@ -42,4 +42,4 @@ function startProject(projectsCont) {
   getProjStorage(projectsCont);
 }
 
-export { Project, projectsCont, startProject };
+export { Project, startProject, projectsCont };

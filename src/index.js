@@ -1,7 +1,7 @@
 import './assets/stylesheets/style.scss';
 import { creator } from './modules/aux-methods';
 import { Project, startProject, projectsCont } from './modules/project';
-import { ToDo, toDosCont, getToDosStorage } from './modules/todo';
+import { ToDo, startToDo, toDosCont } from './modules/todo';
 import {
   createNav, liIds, liNames, liIcons,
 } from './modules/dom-navbar';
@@ -9,8 +9,6 @@ import createProjectModal from './modules/dom-modal-proj';
 import { createToDoModal, inputInfo, radioButtons } from './modules/dom-modal-todo';
 import { createShowToDos, priorityImgs } from './modules/dom-show-todos';
 import createShowProj from './modules/dom-show-proj';
-
-// window.localStorage.clear();
 
 const content = document.getElementById('content');
 
@@ -21,7 +19,7 @@ const displaySection = creator(main, 'article', 'append');
 displaySection.setAttribute('id', 'sect-selected-todo');
 
 startProject(projectsCont);
-getToDosStorage(toDosCont);
+startToDo(toDosCont);
 
 const navList = document.getElementsByTagName('ul')[0].children;
 
