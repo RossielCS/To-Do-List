@@ -13,7 +13,7 @@
 }
 
 main {
-  height: 100vh;
+  height: 100%;
   grid-column: 2/3;
 
   @include flex(row, center, center);
