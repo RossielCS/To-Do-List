@@ -6,6 +6,7 @@
 @import 'modal';
 
 #content {
+  height: 100vh;
   margin: auto;
   display: grid;
   grid-template-columns: 1fr minmax(768px, 1920px) 1fr;

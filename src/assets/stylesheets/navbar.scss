@@ -1,10 +1,11 @@
 nav {
   min-width: 200px;
+  background-color: rgb(83, 183, 250);
 
   ul {
+    position: fixed;
     height: 100%;
     padding: 15vh 0;
-    background-color: rgb(83, 183, 250);
 
     @include flex(column, flex-start, flex-start);
 
